@@ -1,0 +1,15 @@
+<header>
+    <h1>NodeBot</h1>
+    <nav *ngIf="authorized; else unauthorized">
+        <ul>
+            <li><a routerLink="/">вон туда</a></li>
+            <li><a routerLink="/guilds">ну можно и сюда, но лучше туда</a></li>
+        </ul>
+        <span>{{ user!.info.username }}</span>
+    </nav>
+    <ng-template #unauthorized>
+        <nav>
+            <a href="/auth">лох</a>
+        </nav>
+    </ng-template>
+</header>

@@ -1,0 +1,13 @@
+<ul>
+	<li *ngFor="let guild of guilds">
+		<figure class="guild">
+			<img src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.webp?size=128"
+				[alt]="guild.name" />
+			<figcaption>
+				<a routerLink="/guilds/{{ guild.id }}">
+					{{ guild.name }}
+				</a>
+			</figcaption>
+		</figure>
+	</li>
+</ul>
