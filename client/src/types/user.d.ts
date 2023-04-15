@@ -6,5 +6,5 @@ declare interface User {
 		avatar?: string;
 	}>;
 
-    readonly guilds: Guild[];
+    readonly guilds: IGuild[];
 }

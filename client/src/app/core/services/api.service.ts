@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import autobind from 'autobind-decorator';
 
 type Method = 'get' | 'post' | 'put' | 'delete';
 type RequestMaker<M extends Method> = <T = {}>(
@@ -14,6 +15,7 @@ type RequestMaker<M extends Method> = <T = {}>(
 export class ApiService {
 	public constructor(private readonly http: HttpClient) {}
 
+	@autobind
 	private _errorHandler(error: any) {
 		return throwError(() => error);
 	}

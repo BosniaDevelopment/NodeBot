@@ -24,14 +24,7 @@ export class AuthService {
 			redirectUri,
 		});
 
-		const query = new URLSearchParams({
-			client_id: clientId,
-			redirect_uri: redirectUri,
-			response_type: 'code',
-			scope: scope,
-		});
-
-		this.uri = 'https://discord.com/api/oauth2/authorize?' + query;
+		this.uri = this.oauth2.generateAuthUrl({ scope });
 	}
 
 	private static createAuthError(error?: Error): never {
@@ -54,17 +47,11 @@ export class AuthService {
 		}
 	}
 
-	public async getGuilds(
-		accessToken: string
-	): Promise<DiscordOAuth2.PartialGuild[]> {
-		return await this.oauth2
-			.getUserGuilds(accessToken)
-			.catch(AuthService.createAuthError);
+	public async getGuilds(accessToken: string): Promise<DiscordOAuth2.PartialGuild[]> {
+		return await this.oauth2.getUserGuilds(accessToken).catch(AuthService.createAuthError);
 	}
 
 	public async getUserInfo(accessToken: string): Promise<DiscordOAuth2.User> {
-		return await this.oauth2
-			.getUser(accessToken)
-			.catch(AuthService.createAuthError);
+		return await this.oauth2.getUser(accessToken).catch(AuthService.createAuthError);
 	}
 }

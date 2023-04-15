@@ -1,5 +1,4 @@
 <div class="guild">
-	<img src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.webp?size=128"
-		[alt]="guild.name" />
+	<img [src]="guild.iconUrl" [alt]="guild.name" />
 	<h2>{{ guild.name }}</h2>
 </div>

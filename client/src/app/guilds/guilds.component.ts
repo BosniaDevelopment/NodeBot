@@ -1,3 +1,4 @@
+import { Guild, Permission } from '@/core';
 import { UserService } from '@/core/services';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,10 +14,14 @@ export class GuildsComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.userService.user.subscribe((user) => {
-			if (!user)
+			if (!user) {
 				this.guilds = [];
-			else
-				this.guilds = user.guilds.filter(guild => guild.owner);
+				return;
+			}
+			
+			this.guilds = user.guilds
+				.map(Guild.from)
+				.filter(guild => guild.hasPermission(Permission.ManageServer));
 		});
 	}
 }

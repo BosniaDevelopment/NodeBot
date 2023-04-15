@@ -3,6 +3,7 @@ import { Route, RouterModule } from '@angular/router';
 import { AuthGuard } from '@/core/services';
 import { GuildsComponent } from './guilds.component';
 import { GuildComponent } from './guild/guild.component';
+import { GuildResolver } from '@/core/resolvers';
 
 const routes: Route[] = [
     {
@@ -13,7 +14,10 @@ const routes: Route[] = [
     {
         path: ':guildId',
         component: GuildComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        resolve: {
+            guild: GuildResolver
+        }
     }
 ];
 
