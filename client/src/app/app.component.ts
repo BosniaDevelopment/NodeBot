@@ -10,7 +10,7 @@ import { UserService } from './core/services';
 	styles: [],
 })
 export class AppComponent implements OnInit {
-	public readonly title = 'NodeBot dashboard';
+	public title = 'NodeBot dashboard';
 
 	public constructor(
 		private readonly userService: UserService

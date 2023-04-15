@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "extract-i18n": "ng extract-i18n",
+    "watch": "ng build --watch --configuration development --localize"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +27,7 @@
     "@angular-devkit/build-angular": "^15.2.2",
     "@angular/cli": "~15.2.2",
     "@angular/compiler-cli": "^15.2.0",
+    "@angular/localize": "^15.2.6",
     "typescript": "~4.9.4"
   }
 }

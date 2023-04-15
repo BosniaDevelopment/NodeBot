@@ -1,0 +1,8 @@
+{
+  "locale": "en",
+  "translations": {
+    "home": "Home",
+    "servers": "Servers",
+    "login": "Log In"
+  }
+}

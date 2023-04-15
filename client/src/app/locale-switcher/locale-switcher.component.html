@@ -1,0 +1,7 @@
+<div class="switcher">
+	<ul>
+		<li *ngFor="let locale of locales | keyvalue">
+			<a href="/{{ locale.key }}">{{ locale.value }}</a>
+		</li>
+	</ul>
+</div>
