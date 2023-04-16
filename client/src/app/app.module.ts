@@ -7,10 +7,21 @@ import { CoreModule } from './core';
 import { HeaderComponent } from './header/header.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { LocaleSwitcherComponent } from './locale-switcher/locale-switcher.component';
+import { PrimeNGModule } from './primeng.module';
 
 @NgModule({
-	declarations: [AppComponent, HeaderComponent, AuthCallbackComponent, LocaleSwitcherComponent],
-	imports: [BrowserModule, AppRoutingModule, CoreModule],
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		AuthCallbackComponent,
+		LocaleSwitcherComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		CoreModule,
+		PrimeNGModule
+	],
 	providers: [],
 	bootstrap: [AppComponent],
 })

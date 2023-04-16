@@ -1,16 +1,34 @@
 <header>
-    <h1>NodeBot</h1>
-    <nav *ngIf="authorized; else unauthorized">
-        <ul>
-            <li><a i18n="@@home" routerLink="/">Home</a></li>
-            <li><a i18n="@@servers" routerLink="/guilds">Servers</a></li>
-        </ul>
-        <span>{{ user!.info.username }}</span>
-    </nav>
-    <ng-template #unauthorized>
-        <nav>
-            <a i18n="@@login" href="/auth">Log In</a>
-        </nav>
-    </ng-template>
-    <app-locale-switcher/>
+    <p-menubar>
+        <ng-template pTemplate="start">
+            <h1>NodeBot</h1>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <nav>
+                <p-button i18n="@@home" routerLink="/">Home</p-button>
+                <div class="authorized" *ngIf="authorized; else unauthorized">
+                    <p-button i18n="@@servers" routerLink="/guilds">Servers</p-button>
+                    <p-button icon="pi pi-user" styleClass="p-button-rounded"
+                        (onClick)="accountOverlay.toggle($event)" />
+                    <p-overlayPanel #accountOverlay class="user-card-overlay">
+                        <p-avatar [image]="displayAvatarUrl()" shape="circle" size="large" />
+                        <br />
+                        <span class="username">
+                            <span class="name">{{ user!.username }}</span>
+                            <span class="tag p-disabled">#{{ user!.discriminator }}</span>
+                        </span>
+                        <br />
+                        <span class="id p-disabled p-mb-2">ID: {{ user!.id }}</span>
+                        <br />
+                        <p-button i18n="@@warnings">Warnings</p-button>
+                        <p-button i18n="@@logout" styleClass="p-button-danger" (onClick)="logOut()">Log out</p-button>
+                    </p-overlayPanel>
+                </div>
+                <ng-template #unauthorized>
+                    <p-button i18n="@@login" (onClick)="redirect('/auth')">Log in</p-button>
+                </ng-template>
+                <app-locale-switcher/>
+            </nav>
+        </ng-template>
+    </p-menubar>
 </header>

@@ -3,6 +3,8 @@
   "translations": {
     "home": "Головна",
     "servers": "Сервери",
-    "login": "Увійти"
+    "login": "Увійти",
+    "warnings": "Мої попередження",
+    "logout": "Вийти"
   }
 }

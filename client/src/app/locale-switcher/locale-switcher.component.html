@@ -1,7 +1,11 @@
-<div class="switcher">
-	<ul>
-		<li *ngFor="let locale of locales | keyvalue">
-			<a href="/{{ locale.key }}">{{ locale.value }}</a>
-		</li>
-	</ul>
-</div>
+<p-button styleClass="p-button-rounded" icon="pi pi-language" (onClick)="languages.toggle($event)" />
+
+<p-overlayPanel #languages>
+	<div *ngFor="let locale of locales | keyvalue; let i = index">
+		<p-button styleClass="p-button-text" (onClick)="redirect(locale.key)">
+			{{ locale.value }}
+		</p-button>
+		
+		<p-divider *ngIf="i < (locales | keyvalue).length - 1"/>
+	</div>
+</p-overlayPanel>

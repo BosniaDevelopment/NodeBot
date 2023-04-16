@@ -3,6 +3,8 @@
   "translations": {
     "home": "Home",
     "servers": "Servers",
-    "login": "Log In"
+    "warnings": "My warnings",
+    "logout": "Log out",
+    "login": "Log in"
   }
 }

@@ -10,4 +10,8 @@ export class LocaleSwitcherComponent {
 		'en': 'English',
 		'ua': 'Українська'
 	};
+
+	public redirect(locale: string): void {
+		location.href = `/${locale}`;
+	}
 }
