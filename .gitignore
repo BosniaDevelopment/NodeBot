@@ -1,4 +1,6 @@
 .env
+
+# server
 **/package-lock.json
 
 # compiled output
@@ -32,3 +34,6 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Python
+/venv
