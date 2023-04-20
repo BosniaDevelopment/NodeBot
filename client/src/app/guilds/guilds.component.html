@@ -1,12 +1,9 @@
 <ul>
 	<li *ngFor="let guild of guilds">
-		<figure class="guild">
+		<p-card>
 			<img [src]="guild.iconUrl" [alt]="guild.name" />
-			<figcaption>
-				<a routerLink="/guilds/{{ guild.id }}">
-					{{ guild.name }}
-				</a>
-			</figcaption>
-		</figure>
+			<h2>{{ guild.name }}</h2>
+			<p-button i18n="@@server-settings" routerLink="/guilds/{{ guild.id }}">Settings</p-button>
+		</p-card>
 	</li>
 </ul>

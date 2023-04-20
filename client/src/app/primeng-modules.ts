@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MenubarModule } from "primeng/menubar";
@@ -18,9 +17,8 @@ import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { OverlayPanelModule } from "primeng/overlaypanel";
 import { DividerModule } from "primeng/divider";
-import { ConfirmationService } from "primeng/api";
 
-const modules = [
+export const primengModules = [
 	TableModule,
 	InputTextModule,
 	DialogModule,
@@ -38,10 +36,3 @@ const modules = [
 	OverlayPanelModule,
 	DividerModule,
 ];
-
-@NgModule({
-	imports: [BrowserModule, BrowserAnimationsModule, ...modules],
-	providers: [ConfirmationService],
-	exports: [...modules],
-})
-export class PrimeNGModule {}
