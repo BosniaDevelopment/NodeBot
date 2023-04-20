@@ -12,7 +12,8 @@
         "prisma:push": "prisma db push",
         "start:dev": "nest start --watch",
         "start:debug": "nest start --debug --watch",
-        "start:prod": "node dist/main"
+        "start:prod": "node dist/main",
+        "start:bot": "node scripts/start-bot"
     },
     "dependencies": {
         "@nestjs/common": "^9.0.0",
