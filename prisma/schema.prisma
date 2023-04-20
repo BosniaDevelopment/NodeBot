@@ -2,6 +2,11 @@ generator client {
     provider = "prisma-client-js"
 }
 
+generator bot {
+    provider = "prisma-client-py"
+    interface = "asyncio"
+}
+
 datasource db {
     provider = "mongodb"
     url      = env("DATABASE_URL")

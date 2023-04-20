@@ -16,7 +16,7 @@ path = Path(__file__).parent.resolve()
 cogs_list = os.listdir(os.path.join(path, "cogs"))
 for items in cogs_list:
     if items.endswith(".py"):
-        bot.load_extension(f"cogs.{items[:-3]}")
+        bot.load_extension(f"bot.cogs.{items[:-3]}")
 
 
 @bot.event
