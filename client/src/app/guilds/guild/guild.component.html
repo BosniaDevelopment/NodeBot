@@ -1,4 +1,5 @@
 <div class="guild">
 	<img [src]="guild.iconUrl" [alt]="guild.name" />
 	<h2>{{ guild.name }}</h2>
+	<p>{{ (guildConfig | json) ?? 'похоже, бота нет на сервере' }}</p>
 </div>

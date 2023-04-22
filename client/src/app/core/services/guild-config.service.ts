@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import type { Server } from '@prisma/client';
+import { firstValueFrom } from 'rxjs';
 import { ApiService } from './api.service';
 import { AccessTokenService } from './access-token.service';
 
@@ -6,8 +8,18 @@ import { AccessTokenService } from './access-token.service';
 	providedIn: 'root',
 })
 export class GuildConfigService {
-	constructor(
+	public constructor(
 		private readonly accessTokenService: AccessTokenService,
 		private readonly api: ApiService
 	) {}
+
+	public async getConfig(id: string): Promise<Server> {
+		const token = this.accessTokenService.getAccessToken();
+
+		if (!token) throw new Error('Don\'t set access token');
+
+		return await firstValueFrom(
+			this.api.get<Server>(`/api/bot-config/${id}`, { headers: { authorization: token } })
+		);
+	}
 }

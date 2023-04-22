@@ -4,6 +4,7 @@ import { AuthGuard } from '@/core/services';
 import { GuildsComponent } from './guilds.component';
 import { GuildComponent } from './guild/guild.component';
 import { GuildResolver } from '@/core/resolvers';
+import { GuildConfigResolver } from '@/core/resolvers/guild-config.resolver';
 
 const routes: Route[] = [
 	{
@@ -17,6 +18,7 @@ const routes: Route[] = [
 		canActivate: [AuthGuard],
 		resolve: {
 			guild: GuildResolver,
+			guildConfig: GuildConfigResolver
 		},
 	},
 ];

@@ -10,7 +10,7 @@ export const GuildResolver: ResolveFn<Guild> = (route: ActivatedRouteSnapshot) =
 
 	return userService.user.pipe(
 		filter(Boolean),
-		map(({ guilds }) => guilds.find(guild => guild.id === guildId)),
+		map(({ guilds }) => guilds.find((guild) => guild.id === guildId)),
 		filter(Boolean),
 		map(Guild.from)
 	);
