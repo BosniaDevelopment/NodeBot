@@ -3,7 +3,7 @@ generator client {
 }
 
 generator bot {
-    provider = "prisma-client-py"
+    provider  = "prisma-client-py"
     interface = "asyncio"
 }
 

@@ -2,7 +2,7 @@ import * as path from 'node:path';
 import * as fs from 'node:fs/promises';
 import { Controller, Get, Next, Redirect, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { locales } from './app.module';
+import { locales } from '@/locales';
 
 @Controller()
 export class AppController {

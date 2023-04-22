@@ -1,12 +1,12 @@
 import { WithCode } from '@/dto/with-code';
-import { ConsoleLogger, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as DiscordOAuth2 from 'discord-oauth2';
 
 @Injectable()
 export class AuthService {
-	private static readonly logger = new ConsoleLogger('AuthService');
-
+	private readonly logger = new Logger(AuthService.name);
+	
 	private readonly oauth2: DiscordOAuth2;
 	public readonly uri: string;
 
@@ -25,6 +25,8 @@ export class AuthService {
 		});
 
 		this.uri = this.oauth2.generateAuthUrl({ scope });
+
+		this.logger.log(`Auth url: ${this.uri}`);
 	}
 
 	private static createAuthError(error?: Error): never {
@@ -39,7 +41,7 @@ export class AuthService {
 				scope: process.env.NBOT_SCOPES.split(/\s+/),
 			});
 
-			AuthService.logger.log(`authorized user with access token ${accessToken}`);
+			this.logger.log(`authorized user with access token ${accessToken}`);
 
 			return { code: accessToken };
 		} catch (err: any) {
