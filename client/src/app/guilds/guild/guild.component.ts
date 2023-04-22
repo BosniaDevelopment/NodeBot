@@ -1,7 +1,6 @@
 import { Guild } from '@/core';
-import { UserService } from '@/core/services';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-guild',
@@ -11,11 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class GuildComponent implements OnInit {
 	public guild!: Guild;
 
-	public constructor(
-		private readonly route: ActivatedRoute
-	) { }
+	public constructor(private readonly route: ActivatedRoute) {}
 
 	public ngOnInit(): void {
-		this.route.data.subscribe(({ guild }) => this.guild = guild);
+		this.route.data.subscribe(({ guild }) => (this.guild = guild));
 	}
 }

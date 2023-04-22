@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 	public user?: User['info'];
-	public authorized: boolean = false;
+	public authorized = false;
 
 	public readonly userMenuItems: MenuItem[] = [
 		{
 			label: 'Выйти',
-			icon: 'pi pi-fw pi-power-off'
-		}
+			icon: 'pi pi-fw pi-power-off',
+		},
 	];
-	
+
 	public constructor(
 		private readonly userService: UserService,
 		private readonly router: Router
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
 		this.userService.user.subscribe((user) => {
 			if (!user) {
 				this.user = undefined;
-				this.authorized = false
+				this.authorized = false;
 			} else {
 				console.log(user);
 				this.user = user.info;
@@ -43,21 +43,19 @@ export class HeaderComponent implements OnInit {
 
 	public logOut(): void {
 		this.userService.destroyAuth();
-		this.router.navigate([ '/' ]);
+		this.router.navigate(['/']);
 	}
 
 	public displayAvatarUrl(): string {
-		if (!this.user!.avatar)
-			return 'https://cdn.discordapp.com/icons/1096509092215935066/a2909fc5aa9b768075f474577f498d24.webp'
+		if (!this.user?.avatar)
+			return 'https://cdn.discordapp.com/icons/1096509092215935066/a2909fc5aa9b768075f474577f498d24.webp';
 
-		const base = `https://cdn.discordapp.com/avatars/${this.user!.id}/${this.user!.avatar}`;
+		const base = `https://cdn.discordapp.com/avatars/${this.user?.id}/${this.user?.avatar}`;
 		let format: string;
 
-		if (this.user!.avatar.startsWith('a_'))
-			format = 'gif';
-		else
-			format = 'png';
-		
+		if (this.user?.avatar.startsWith('a_')) format = 'gif';
+		else format = 'png';
+
 		return `${base}.${format}`;
 	}
 }

@@ -8,7 +8,7 @@ import { tap } from 'rxjs';
 	styleUrls: [ './home.component.scss' ],
 })
 export class HomeComponent implements OnInit {
-	public loggedIn: boolean = false;
+	public loggedIn = false;
 
 	public constructor(
 		private readonly userService: UserService

@@ -44,8 +44,9 @@ export class AuthService {
 			this.logger.log(`authorized user with access token ${accessToken}`);
 
 			return { code: accessToken };
-		} catch (err: any) {
-			AuthService.createAuthError(err);
+		} catch (err: unknown) {
+			if (err instanceof Error)
+				AuthService.createAuthError(err);
 		}
 	}
 

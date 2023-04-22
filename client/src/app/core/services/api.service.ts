@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import autobind from 'autobind-decorator';
 
 type Method = 'get' | 'post' | 'put' | 'delete';
-type RequestMaker<M extends Method> = <T = {}>(
+type RequestMaker<M extends Method> = <T = object>(
 	url: `/${string}`,
 	params?: Parameters<HttpClient[M]>[1]
 ) => Observable<T>;
@@ -25,7 +27,8 @@ export class ApiService {
 		url: `/${string}`,
 		params?: Parameters<HttpClient[M]>[1]
 	): Observable<T> {
-		// @ts-expect-error
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		return this.http[method](url, params)
 			.pipe(catchError(this._errorHandler)) as Observable<T>;
 	}

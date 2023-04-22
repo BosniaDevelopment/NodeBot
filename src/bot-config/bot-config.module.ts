@@ -5,8 +5,8 @@ import { CoreModule } from '@/services/core.module';
 import { AuthModule } from '@/auth/auth.module';
 
 @Module({
-    providers: [GuildConfigService],
-    controllers: [BotConfigController],
-    imports: [CoreModule, AuthModule]
+	providers: [GuildConfigService],
+	controllers: [BotConfigController],
+	imports: [CoreModule, AuthModule],
 })
 export class BotConfigModule {}

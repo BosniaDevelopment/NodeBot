@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 export class AccessTokenService {
 	public static readonly localStorageKey: string = 'discord-oauth2-access-token';
 
-	public getAccessToken(): string {
-		return localStorage.getItem(AccessTokenService.localStorageKey)!;
+	public getAccessToken(): string | null {
+		return localStorage.getItem(AccessTokenService.localStorageKey);
 	}
 
 	public saveAccessToken(token: string): void {
