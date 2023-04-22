@@ -6,7 +6,7 @@ import { PrismaService } from '@/services/prisma.service';
 export class GuildConfigService {
 	public constructor(private readonly prisma: PrismaService) {}
 
-	public async getConfig(id: number) {
+	public async getConfig(id: string) {
 		return await this.prisma.server.findFirst({ where: { id } });
 	}
 

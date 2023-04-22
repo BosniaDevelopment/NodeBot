@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
 		const accessToken =
 			request.headers.authorization ?? request.body.accessToken ?? request.query.accessToken;
 
-		if (!accessToken) return false;
+		if (!accessToken || typeof accessToken !== 'string') return false;
 
 		request[AuthGuard.userInfo] = await this.authService.getUserInfo(accessToken);
 		request[AuthGuard.guilds] = await this.authService.getGuilds(accessToken);

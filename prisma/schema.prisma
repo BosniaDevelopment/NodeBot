@@ -13,7 +13,7 @@ datasource db {
 }
 
 model Server {
-    id                   Int     @id @map("_id")
+    id                   String  @id @map("_id")
     antiSpam             Boolean @default(false)
     antiSpamMaxFrequency Int     @default(0)
 }
@@ -21,11 +21,11 @@ model Server {
 model Warning {
     id     DateTime @id @map("_id")
     user   User     @relation(fields: [userId], references: [id])
-    userId Int
+    userId String
     reason String   @default("")
 }
 
 model User {
-    id       Int       @id @map("_id")
+    id       String    @id @map("_id")
     warnings Warning[]
 }

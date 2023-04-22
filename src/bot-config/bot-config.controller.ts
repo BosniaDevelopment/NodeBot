@@ -16,6 +16,6 @@ export class BotConfigController {
 		if (!guild || !guild.owner)
 			throw new HttpException('You are not owner on this guild', HttpStatus.BAD_REQUEST);
 
-		return await this.guildConfigService.getConfig(+guild.id);
+		return await this.guildConfigService.getConfig(guild.id);
 	}
 }
