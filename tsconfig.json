@@ -1,5 +1,5 @@
 {
-	"include": [ "src/**/*" ],
+	"include": [ "server/**/*", "common/**/*" ],
 	"compilerOptions": {
 		"module": "commonjs",
 		"declaration": true,
@@ -17,9 +17,11 @@
 		"strictBindCallApply": false,
 		"forceConsistentCasingInFileNames": false,
 		"noFallthroughCasesInSwitch": false,
+		"importHelpers": true,
 		"strict": true,
 		"paths": {
-			"@/*": [ "./src/*" ]
+			"@/*": [ "./server/*" ],
+			"@common/*": [ "./common/*" ]
 		}
 	},
 }

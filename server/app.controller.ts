@@ -6,7 +6,7 @@ import { locales } from '@/locales';
 
 @Controller()
 export class AppController {
-	public static readonly staticRoot: string = path.join(__dirname, 'client');
+	public static readonly staticRoot: string = path.join(__dirname, '..', 'client');
 
 	public getStaticFilePath(locale: string, rest: string[]): string {
 		return path.join(AppController.staticRoot, locale, rest.join('/').replace(/\?.$/g, ''));

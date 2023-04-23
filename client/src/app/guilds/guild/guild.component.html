@@ -1,5 +1,20 @@
 <div class="guild">
 	<img [src]="guild.iconUrl" [alt]="guild.name" />
 	<h2>{{ guild.name }}</h2>
-	<p>{{ (guildConfig | json) ?? 'похоже, бота нет на сервере' }}</p>
+
+	<form [formGroup]="form" *ngIf="form?.customValidateErrors | async as errors" novalidate>
+		<div class="form-field" *ngFor="let item of form.controls | keyvalue; let i = index"
+			[ngSwitch]="typeOf(defaultConfig[item.key])">
+			<label [for]="i">{{ item.key }}:</label>
+			
+			<p-inputSwitch *ngSwitchCase="'boolean'" [formControlName]="item.key" [id]="i" />
+			<p-inputNumber *ngSwitchCase="'number'" placeholder="0" [formControlName]="item.key" [id]="i" />
+			
+			<span *ngSwitchDefault>null</span>
+		</div>
+	</form>
+
+	<p-overlayPanel #saveOverlay>
+		<p>a</p>
+	</p-overlayPanel>
 </div>
