@@ -4,9 +4,11 @@ import { primengModules } from '@/primeng-modules';
 import { GuildsRoutingModule } from './guilds-routing.module';
 import { GuildsComponent } from './guilds.component';
 import { GuildComponent } from './guild/guild.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormControlPipe } from './pipes/form-control.pipe';
 
 @NgModule({
-	declarations: [GuildsComponent, GuildComponent],
-	imports: [CommonModule, GuildsRoutingModule, ...primengModules],
+	declarations: [GuildsComponent, GuildComponent, FormControlPipe],
+	imports: [CommonModule, GuildsRoutingModule, ReactiveFormsModule, ...primengModules],
 })
 export class GuildsModule {}
