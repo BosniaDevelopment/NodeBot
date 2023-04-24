@@ -10,4 +10,5 @@ class NodeBot:
             help_command=None
         )
 
-        self.load_cogs(self.bot)
+        for f in self.loader_funcs:
+            f(self.bot)
