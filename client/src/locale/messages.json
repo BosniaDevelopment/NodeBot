@@ -1,13 +1,17 @@
 {
   "locale": "en",
   "translations": {
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "1862030086361701110": "Spam protection",
+    "1914359071702511914": "Max messages frequency",
     "server-settings": "Settings",
     "home": "Home",
     "servers": "Servers",
     "warnings": "Warnings",
     "logout": "Log out",
     "login": "Log in",
-    "slogan": "Most minimalistic, powerful, customizable and scalable AI moderator and companion for admins with open source code",
-    "add-bot": "Invite the bot"
+    "slogan": " Most minimalistic, powerful, customizable and scalable AI moderator and companion for admins with open source code ",
+    "add-bot": "Добавить бота"
   }
 }

@@ -1,47 +1,86 @@
 import { Guild } from '@/core';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicFormBuilder, DynamicFormGroup } from 'ngx-dynamic-form-builder';
 import type { Server } from '@prisma/client';
-import { EditGuildConfig } from './schema';
+import deepEqual from 'deep-equal';
 import { plainToInstance } from 'class-transformer';
-import { OverlayPanel } from 'primeng/overlaypanel';
+import { MessageService } from 'primeng/api';
+import { GuildConfigService } from '@/core/services';
+import { EditGuildConfig } from './schema';
 
 @Component({
 	selector: 'app-guild',
 	templateUrl: './guild.component.html',
 	styleUrls: ['./guild.component.scss'],
+	providers: [MessageService],
 })
 export class GuildComponent implements OnInit {
-	@ViewChild('saveOverlay')
-	public saveOverlay!: ElementRef<OverlayPanel>;
-
 	public guild!: Guild;
 	public guildConfig: Omit<Server, 'id'> | null = null;
 	public form!: DynamicFormGroup<EditGuildConfig>;
 
-	private readonly formBuilder = new DynamicFormBuilder;
+	public showSaveOverlay = true;
+
+	public formI18n = EditGuildConfig.i18n;
+
+	private readonly formBuilder = new DynamicFormBuilder();
+
+	public get hasChanges(): boolean {
+		return deepEqual(this.form.object, this.guildConfig, { strict: true });
+	}
 
 	public readonly defaultConfig: Record<string, never> = plainToInstance(EditGuildConfig, {
 		antiSpam: false,
-		antiSpamMaxFrequency: 0
+		antiSpamMaxFrequency: 0,
 	}) as unknown as Record<string, never>;
 
 	public constructor(
 		private readonly route: ActivatedRoute,
+		private readonly guildConfigService: GuildConfigService,
+		private readonly messageService: MessageService
 	) {}
 
 	public ngOnInit(): void {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		this.route.data.subscribe(({ guild, guildConfig: { id, ...guildConfig } }) => {
+			console.log(id, guildConfig);
+			
 			this.guild = guild;
 			this.guildConfig = guildConfig as Omit<Server, 'id'>;
-			this.form = this.formBuilder.rootFormGroup(EditGuildConfig, { ...this.guildConfig });
-			this.form.object = plainToInstance(EditGuildConfig, this.guildConfig);
-		});
+			
+			const configCopy = { ...this.guildConfig };
 
-		console.log(this.saveOverlay);
-		this.saveOverlay.nativeElement.toggle(undefined);
+			this.form = this.formBuilder.rootFormGroup(EditGuildConfig, configCopy);
+			this.form.object = plainToInstance(EditGuildConfig, configCopy);
+		});
+	}
+
+	public saveForm(): void {
+		if (!this.form.valid) return;
+
+		this.guildConfigService.editConfig(this.guild.id, this.form.value).subscribe({
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			next: ({ id, ...config }) => {
+				console.log('saved', id);
+
+				this.guildConfig = config;
+
+				this.form.markAsPristine();
+
+				console.log(this.form.dirty);
+
+				this.messageService.add({
+					severity: 'info',
+					detail: 'Saved!',
+				});
+			},
+			error: console.error,
+		});
+	}
+
+	public resetForm(): void {
+		this.form.reset(this.guildConfig);
 	}
 
 	public typeOf(value: unknown) {

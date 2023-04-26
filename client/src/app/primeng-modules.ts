@@ -16,6 +16,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DividerModule } from 'primeng/divider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { MessagesModule } from 'primeng/messages';
 
 export const primengModules = [
 	TableModule,
@@ -35,5 +36,6 @@ export const primengModules = [
 	OverlayPanelModule,
 	DividerModule,
 	CheckboxModule,
-	InputSwitchModule
+	InputSwitchModule,
+	MessagesModule
 ];

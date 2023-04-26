@@ -4,12 +4,14 @@ import { ApiService } from './api.service';
 import { AccessTokenService } from './access-token.service';
 import { BehaviorSubject, Observable, Subject, distinctUntilChanged } from 'rxjs';
 
+export type AuthState = User | 'fetching' | 'unauthorized';
+
 @Injectable({
 	providedIn: 'root',
 })
 export class UserService {
-	public readonly userSubject: Subject<User | false> = new BehaviorSubject<User | false>(false);
-	public readonly user: Observable<User | false> = this.userSubject
+	public readonly userSubject: Subject<AuthState> = new BehaviorSubject<AuthState>('fetching');
+	public readonly user: Observable<AuthState> = this.userSubject
 		.asObservable()
 		.pipe(distinctUntilChanged());
 
@@ -19,6 +21,8 @@ export class UserService {
 	) {}
 
 	public fetchInfo(): void {
+		this.setAuth('fetching');
+		
 		const authorization = this.accessTokenService.getAccessToken();
 
 		if (!authorization) return this.destroyAuth();
@@ -30,14 +34,14 @@ export class UserService {
 	}
 
 	@autobind
-	private setAuth(user: User): void {
+	private setAuth(user: AuthState): void {
 		this.userSubject.next(user);
 	}
 
 	@autobind
 	public destroyAuth(): void {
 		this.accessTokenService.destroyToken();
-		this.userSubject.next(false);
+		this.userSubject.next('unauthorized');
 	}
 
 	public logIn(code: string): void {

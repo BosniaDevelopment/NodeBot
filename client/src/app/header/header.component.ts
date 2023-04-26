@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.userService.user.subscribe((user) => {
-			if (!user) {
+			if (typeof user !== 'object') {
 				this.user = undefined;
 				this.authorized = false;
 			} else {

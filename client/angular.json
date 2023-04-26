@@ -54,6 +54,14 @@
 						"outputPath": "../dist/client",
 						"index": "src/index.html",
 						"main": "src/main.ts",
+						"allowedCommonJsDependencies": [
+							"validator",
+							"lodash.get",
+							"lodash.clonedeep",
+							"lodash.mergewith",
+							"lodash.set",
+							"deep-equal"
+						],
 						"polyfills": [
 							"zone.js"
 						],

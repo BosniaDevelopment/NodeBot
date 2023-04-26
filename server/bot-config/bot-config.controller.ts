@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Put, UseGuards } from '@nestjs/common';
 import { PartialGuild } from 'discord-oauth2';
 import { Guilds } from '@/auth/decorators';
 import { AuthGuard } from '@/auth/auth.guard';
@@ -20,17 +20,21 @@ export class BotConfigController {
 		return await this.guildConfigService.getConfig(guild.id);
 	}
 
-	@Post('/:guildId')
+	@Put('/:guildId')
 	public async editConfig(
 		@Body() config: EditGuildConfig,
 		@Guilds() guilds: PartialGuild[],
 		@Param('guildId') guildId: string,
 	) {
+		delete config['accessToken' as never];
+
 		const guild = guilds.find((guild) => guild.id === guildId);
 
 		if (!guild || !guild.owner)
 			throw new HttpException('You are not owner on this guild', HttpStatus.BAD_REQUEST);
 
-		await this.guildConfigService.edit({ id: guildId, ...config });
+		await this.guildConfigService.edit({ id: guild.id, ...config });
+
+		return await this.guildConfigService.getConfig(guild.id);
 	}
 }

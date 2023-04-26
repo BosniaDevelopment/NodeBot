@@ -4,8 +4,9 @@ import { UserService } from './core/services';
 @Component({
 	selector: 'app-root',
 	template: `
-		<app-header/>
-		<router-outlet></router-outlet>
+		<app-header />
+		<router-outlet />
+		<p-messages />
 	`,
 	styles: [],
 })

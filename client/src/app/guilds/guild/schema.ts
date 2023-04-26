@@ -3,6 +3,11 @@ import { Expose } from 'class-transformer-global-storage';
 import { IsBoolean, IsNumber, Min } from 'class-validator';
 
 export class EditGuildConfig implements Omit<Server, 'id'> {
+	public static readonly i18n: Record<keyof EditGuildConfig, string> = {
+		antiSpam: $localize`@@form-field-antiSpam`,
+		antiSpamMaxFrequency: $localize`@@form-field-antiSpamMaxFrequency`
+	};
+
 	@Expose()
 	@IsBoolean()
 	public antiSpam!: boolean;

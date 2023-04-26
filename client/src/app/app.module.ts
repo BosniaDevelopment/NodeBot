@@ -12,6 +12,7 @@ import { LocaleSwitcherComponent } from './locale-switcher/locale-switcher.compo
 import { primengModules } from './primeng-modules';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
 	declarations: [
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		AuthCallbackComponent,
 		LocaleSwitcherComponent,
 		HomeComponent,
+		LoadingComponent,
 	],
 	imports: [
 		BrowserModule,

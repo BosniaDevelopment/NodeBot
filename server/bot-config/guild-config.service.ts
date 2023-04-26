@@ -10,7 +10,7 @@ export class GuildConfigService {
 		return await this.prisma.server.findFirst({ where: { id } });
 	}
 
-	public async edit(config: Server) {
-		await this.prisma.server.update({ where: { id: config.id }, data: config });
+	public async edit({ id, ...config }: Server) {
+		await this.prisma.server.update({ where: { id }, data: config });
 	}
 }

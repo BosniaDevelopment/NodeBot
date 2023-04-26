@@ -1,20 +1,35 @@
-<div class="guild">
-	<img [src]="guild.iconUrl" [alt]="guild.name" />
-	<h2>{{ guild.name }}</h2>
+<p-card>
+	<div class="guild">
+		<img [src]="guild.iconUrl" [alt]="guild.name" [style]="{ 'border-radius': '10px' }" />
 
-	<form [formGroup]="form" *ngIf="form?.customValidateErrors | async as errors" novalidate>
-		<div class="form-field" *ngFor="let item of form.controls | keyvalue; let i = index"
-			[ngSwitch]="typeOf(defaultConfig[item.key])">
-			<label [for]="i">{{ item.key }}:</label>
-			
-			<p-inputSwitch *ngSwitchCase="'boolean'" [formControlName]="item.key" [id]="i" />
-			<p-inputNumber *ngSwitchCase="'number'" placeholder="0" [formControlName]="item.key" [id]="i" />
-			
-			<span *ngSwitchDefault>null</span>
-		</div>
-	</form>
+		<h2>{{ guild.name }}</h2>
 
-	<p-overlayPanel #saveOverlay>
-		<p>a</p>
-	</p-overlayPanel>
-</div>
+		<p-divider />
+
+		<form [formGroup]="form" *ngIf="form?.customValidateErrors | async as errors" novalidate>
+			<div class="form-field" *ngFor="let item of form.controls | keyvalue; let i = index"
+				[ngSwitch]="typeOf(defaultConfig[item.key])">
+				<label [for]="i" class="field-name">
+					{{ formI18n[item.key | never] }}:
+				</label>
+
+				<p-inputSwitch styleClass="form-input" *ngSwitchCase="'boolean'" [formControlName]="item.key"
+					[id]="i" />
+				<p-inputNumber styleClass="form-input" *ngSwitchCase="'number'" placeholder="0"
+					[formControlName]="item.key" [id]="i" />
+
+				<span *ngSwitchDefault>null</span>
+				<p-divider *ngIf="i < (form.controls | keyvalue).length - 1" />
+			</div>
+		</form>
+
+		<p-menubar class="overlay" *ngIf="form.dirty">
+			<ng-template pTemplate="end">
+				<p-button styleClass="p-button-danger" icon="pi pi-times" label="Cancel"
+					[style]="{ 'margin-right': '10px' }" i18n-label="@@cancel" (onClick)="resetForm()" />
+				<p-button styleClass="p-button-success" icon="pi pi-check" label="Submit" i18n-label="@@submit"
+					(onClick)="saveForm()" [disabled]="!form.valid" />
+			</ng-template>
+		</p-menubar>
+	</div>
+</p-card>

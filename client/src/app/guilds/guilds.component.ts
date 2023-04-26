@@ -14,7 +14,7 @@ export class GuildsComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.userService.user.subscribe((user) => {
-			if (!user) {
+			if (typeof user !== 'object') {
 				this.guilds = [];
 				return;
 			}
