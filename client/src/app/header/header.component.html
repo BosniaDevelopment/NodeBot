@@ -7,7 +7,7 @@
             <nav>
                 <p-button i18n="@@home" routerLink="/">Home</p-button>
                 <div class="authorized" *ngIf="authorized; else unauthorized">
-                    <p-button i18n="@@servers" routerLink="/guilds">Servers</p-button>
+                    <p-button icon="pi pi-server" i18n-label="@@servers" label="Servers" routerLink="/guilds" />
                     <p-button icon="pi pi-user" styleClass="p-button-rounded"
                         (onClick)="accountOverlay.toggle($event)" />
                     <p-overlayPanel #accountOverlay class="user-card-overlay">
@@ -25,7 +25,7 @@
                     </p-overlayPanel>
                 </div>
                 <ng-template #unauthorized>
-                    <p-button i18n="@@login" (onClick)="redirect('/auth')">Log in</p-button>
+                    <p-button label="Log in" i18n-label="@@login" (onClick)="redirect('/auth')" icon="pi pi-sign-in" />
                 </ng-template>
                 <app-locale-switcher/>
             </nav>

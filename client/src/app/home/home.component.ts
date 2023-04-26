@@ -1,6 +1,5 @@
 import { UserService } from '@/core/services';
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
 
 @Component({
 	selector: 'app-home',
@@ -19,6 +18,8 @@ export class HomeComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
-		this.userService.user.pipe(tap(user => this.loggedIn = !!user));
+		this.userService.user.subscribe((user) => {
+			this.loggedIn = typeof user === 'object';
+		});
 	}
 }

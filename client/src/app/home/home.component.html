@@ -1,5 +1,5 @@
 <div class="container">
-	<p-card class="card">
+	<p-card class="card" styleClass="p-shadow-12">
 		<div class="card-body">
 			<img class="bot-avatar" src="assets/bot-avatar.png" alt="Bot's avatar" width="300">
 			<p class="slogan" i18n="@@slogan">
@@ -8,9 +8,10 @@
 			</p>
 			<p-button class="add-bot" (onClick)="redirect('https://nodejs.org')" icon="pi pi-discord"
 				label="Add the bot" i18n-label="@@add-bot" />
-			<p-button routerLink="/guilds" icon="pi pi-server" label="Серверы" *ngIf="loggedIn; else unauthorized" />
+			<p-button routerLink="/guilds" icon="pi pi-server" label="Servers" i18n-label="@@servers"
+				*ngIf="loggedIn; else unauthorized" />
 			<ng-template #unauthorized>
-				<p-button (onClick)="redirect('/auth')" icon="pi pi-user-plus" i18n-label="@@login"
+				<p-button (onClick)="redirect('/auth')" icon="pi pi-sign-in" i18n-label="@@login"
 					label="Log in"></p-button>
 			</ng-template>
 		</div>
