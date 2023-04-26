@@ -1,16 +1,21 @@
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { UserService } from './user.service';
 import { map } from 'rxjs';
 
-export const AuthGuard: CanActivateFn = () => {
+export const AuthGuard: CanActivateFn = (_, { url: next }) => {
 	const userService = inject(UserService);
+	const router = inject(Router);
 
 	return userService.user.pipe(
 		map((user) => {
-			if (user) return true;
+			if (typeof user === 'object') return true;
 
-			location.href = '/auth';
+			if (user === 'fetching')
+				router.navigate([ 'loading' ], { queryParams: { next } });
+			else if (user === 'unauthorized')
+				location.href = '/auth';
+
 			return false;
 		})
 	);

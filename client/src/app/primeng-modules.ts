@@ -17,6 +17,7 @@ import { DividerModule } from 'primeng/divider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { MessagesModule } from 'primeng/messages';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 export const primengModules = [
 	TableModule,
@@ -37,5 +38,6 @@ export const primengModules = [
 	DividerModule,
 	CheckboxModule,
 	InputSwitchModule,
-	MessagesModule
+	MessagesModule,
+	ProgressSpinnerModule
 ];

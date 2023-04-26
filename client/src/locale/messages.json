@@ -3,8 +3,8 @@
   "translations": {
     "cancel": "Cancel",
     "submit": "Submit",
-    "1862030086361701110": "Spam protection",
-    "1914359071702511914": "Max messages frequency",
+    "1862030086361701110": "@@form-field-antiSpam",
+    "1914359071702511914": "@@form-field-antiSpamMaxFrequency",
     "server-settings": "Settings",
     "home": "Home",
     "servers": "Servers",
@@ -12,6 +12,7 @@
     "logout": "Log out",
     "login": "Log in",
     "slogan": " Most minimalistic, powerful, customizable and scalable AI moderator and companion for admins with open source code ",
-    "add-bot": "Добавить бота"
+    "add-bot": "Add the bot",
+    "loading": "Logging in..."
   }
 }

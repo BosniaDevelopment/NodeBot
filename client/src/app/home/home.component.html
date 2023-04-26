@@ -7,7 +7,7 @@
 				moderator and companion for admins with open source code
 			</p>
 			<p-button class="add-bot" (onClick)="redirect('https://nodejs.org')" icon="pi pi-discord"
-				label="Добавить бота" i18n-label="@@add-bot" />
+				label="Add the bot" i18n-label="@@add-bot" />
 			<p-button routerLink="/guilds" icon="pi pi-server" label="Серверы" *ngIf="loggedIn; else unauthorized" />
 			<ng-template #unauthorized>
 				<p-button (onClick)="redirect('/auth')" icon="pi pi-user-plus" i18n-label="@@login"
