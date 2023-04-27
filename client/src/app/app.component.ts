@@ -5,7 +5,9 @@ import { UserService } from './core/services';
 	selector: 'app-root',
 	template: `
 		<app-header />
-		<router-outlet />
+		<main>
+			<router-outlet />
+		</main>
 		<p-messages />
 	`,
 	styles: [],
