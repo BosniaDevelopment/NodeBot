@@ -27,11 +27,6 @@ export class AppController {
 	@Redirect('/auth/invite')
 	invite() {}
 
-	@Get('/locale')
-	locale(@Locale() locale: unknown) {
-		return locale;
-	}
-
 	@Get('**')
 	async serveStatic(
 		@Req() req: Request,
