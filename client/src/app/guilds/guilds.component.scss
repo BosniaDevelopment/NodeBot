@@ -8,6 +8,7 @@
 :host ::ng-deep {
     .p-card {
         border: 2px solid rgb(70, 70, 70);
+        box-shadow: none;
 
         &:hover {
             transition: .1s;
