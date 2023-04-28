@@ -1,35 +1,48 @@
-<p-card>
-	<div class="guild">
-		<img [src]="guild.iconUrl" [alt]="guild.name" [style]="{ 'border-radius': '10px' }" />
-
-		<h2>{{ guild.name }}</h2>
-
-		<p-divider />
-
-		<form [formGroup]="form" *ngIf="form?.customValidateErrors | async as errors" novalidate>
-			<div class="form-field" *ngFor="let item of form.controls | keyvalue; let i = index"
-				[ngSwitch]="typeOf(defaultConfig[item.key])">
-				<label [for]="i" class="field-name">
-					{{ formI18n[item.key | never] }}:
-				</label>
-
-				<p-inputSwitch styleClass="form-input" *ngSwitchCase="'boolean'" [formControlName]="item.key"
-					[id]="i" />
-				<p-inputNumber styleClass="form-input" *ngSwitchCase="'number'" placeholder="0"
-					[formControlName]="item.key" [id]="i" />
-
-				<span *ngSwitchDefault>null</span>
-				<p-divider *ngIf="i < (form.controls | keyvalue).length - 1" />
-			</div>
-		</form>
-
-		<p-menubar class="overlay" *ngIf="form.dirty">
-			<ng-template pTemplate="end">
-				<p-button styleClass="p-button-danger" icon="pi pi-times" label="Cancel"
-					[style]="{ 'margin-right': '10px' }" i18n-label="@@cancel" (onClick)="resetForm()" />
-				<p-button styleClass="p-button-success" icon="pi pi-check" label="Submit" i18n-label="@@submit"
-					(onClick)="saveForm()" [disabled]="!form.valid" />
-			</ng-template>
-		</p-menubar>
-	</div>
+<p-card *ngIf="guildConfig === null; else hasBot" class="without-bot">
+	<img class="guild-icon" [src]="guild.iconUrl" [alt]="guild.name">
+	<h2>{{ guild.name }}</h2>
+	<p i18n="@@server-without-bot">
+		NodeBot is not member of <b>{{ guild.name }}</b>, so you can't configure this server.
+	</p>
+	<p-button styleClass="p-button-raised p-button-text mr-4" i18n-label="@@return-to-servers-list"
+		label="Return to servers list" routerLink="/guilds" icon="pi pi-angle-left" />
+	<p-button icon="pi pi-discord" label="Add the bot" i18n-label="@@add-bot" />
 </p-card>
+
+<ng-template #hasBot>
+	<p-card>
+		<div class="guild">
+			<img [src]="guild.iconUrl" [alt]="guild.name" class="guild-icon" />
+
+			<h2>{{ guild.name }}</h2>
+
+			<p-divider />
+
+			<form [formGroup]="form" *ngIf="form?.customValidateErrors | async as errors" novalidate>
+				<div class="form-field" *ngFor="let item of form.controls | keyvalue; let i = index"
+					[ngSwitch]="typeOf(defaultConfig[item.key])">
+					<label [for]="i" class="field-name">
+						{{ formI18n[item.key | never] }}:
+					</label>
+
+					<p-inputSwitch styleClass="form-input" *ngSwitchCase="'boolean'" [formControlName]="item.key"
+						[id]="i" />
+					<p-inputNumber styleClass="form-input" *ngSwitchCase="'number'" placeholder="0"
+						[formControlName]="item.key" [id]="i" />
+
+					<span *ngSwitchDefault>null</span>
+					<p-divider *ngIf="i < (form.controls | keyvalue).length - 1" />
+				</div>
+			</form>
+
+			<p-menubar class="overlay" *ngIf="form.dirty">
+				<ng-template pTemplate="end">
+					<p-button styleClass="p-button-danger" icon="pi pi-times" label="Cancel"
+						[style]="{ 'margin-right': '10px' }" i18n-label="@@cancel" (onClick)="resetForm()" />
+					<p-button styleClass="p-button-success" icon="pi pi-check" label="Submit" i18n-label="@@submit"
+						(onClick)="saveForm()" [disabled]="!form.valid" />
+				</ng-template>
+			</p-menubar>
+		</div>
+	</p-card>
+</ng-template>

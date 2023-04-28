@@ -1,6 +1,9 @@
 {
   "locale": "en",
   "translations": {
+    "server-without-bot": "NodeBot is not member of {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, so you can't configure this server.",
+    "add-bot": "Add the bot",
+    "return-to-servers-list": " Return to servers list ",
     "cancel": "Cancel",
     "submit": "Submit",
     "1862030086361701110": "@@form-field-antiSpam",
@@ -12,7 +15,6 @@
     "logout": "Log out",
     "login": "Log in",
     "slogan": " Most minimalistic, powerful, customizable and scalable AI moderator and companion for admins with open source code ",
-    "add-bot": "Add the bot",
     "loading": "Logging in..."
   }
 }

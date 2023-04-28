@@ -43,11 +43,15 @@ export class GuildComponent implements OnInit {
 
 	public ngOnInit(): void {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		this.route.data.subscribe(({ guild, guildConfig: { id, ...guildConfig } }) => {
-			console.log(id, guildConfig);
-			
+		this.route.data.subscribe(({ guild, guildConfig }) => {
 			this.guild = guild;
-			this.guildConfig = guildConfig as Omit<Server, 'id'>;
+			
+			if (!guildConfig) return;
+
+			const { id, ...rest } = guildConfig;
+			console.log(id, rest);
+
+			this.guildConfig = rest as Omit<Server, 'id'>;
 			
 			const configCopy = { ...this.guildConfig };
 
