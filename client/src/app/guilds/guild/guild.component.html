@@ -6,7 +6,7 @@
 	</p>
 	<p-button styleClass="p-button-raised p-button-text mr-4" i18n-label="@@return-to-servers-list"
 		label="Return to servers list" routerLink="/guilds" icon="pi pi-angle-left" />
-	<p-button icon="pi pi-discord" label="Add the bot" i18n-label="@@add-bot" />
+	<p-button icon="pi pi-discord" label="Add the bot" i18n-label="@@add-bot" (onClick)="redirect('/invite')" />
 </p-card>
 
 <ng-template #hasBot>

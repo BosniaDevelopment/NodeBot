@@ -12,6 +12,11 @@ export class AuthController {
 		res.redirect(this.authService.uri);
 	}
 
+	@Get('invite')
+	inviteBot(@Res() res: Response) {
+		res.redirect(this.authService.addBotUri);
+	}
+
 	@Get('uri') url() {
 		return this.authService.uri;
 	}

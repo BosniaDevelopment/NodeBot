@@ -9,6 +9,7 @@ export class AuthService {
 	
 	private readonly oauth2: DiscordOAuth2;
 	public readonly uri: string;
+	public readonly addBotUri: string;
 
 	public constructor(config: ConfigService) {
 		const clientId = config.getOrThrow<string>('NBOT_CLIENT_ID');
@@ -16,7 +17,7 @@ export class AuthService {
 		const redirectUri = config
 			.getOrThrow<string>('NBOT_REDIRECT_URI')
 			.replaceAll('{PORT}', config.getOrThrow<string>('PORT'));
-		const scope = config.getOrThrow<string>('NBOT_SCOPES');
+		let scope = config.getOrThrow<string>('NBOT_SCOPES');
 
 		this.oauth2 = new DiscordOAuth2({
 			clientId,
@@ -25,6 +26,15 @@ export class AuthService {
 		});
 
 		this.uri = this.oauth2.generateAuthUrl({ scope });
+
+		if (!scope.includes('bot'))
+			scope += ' bot';
+
+		this.addBotUri = this.oauth2.generateAuthUrl({
+			scope,
+			permissions: 8,
+			disableGuildSelect: false,
+		});
 
 		this.logger.log(`Auth url: ${this.uri}`);
 	}

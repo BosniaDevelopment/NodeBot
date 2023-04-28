@@ -6,7 +6,7 @@
 				Most minimalistic, powerful, customizable and scalable AI
 				moderator and companion for admins with open source code
 			</p>
-			<p-button class="add-bot" (onClick)="redirect('https://nodejs.org')" icon="pi pi-discord"
+			<p-button class="add-bot" (onClick)="redirect('/invite')" icon="pi pi-discord"
 				label="Add the bot" i18n-label="@@add-bot" />
 			<p-button routerLink="/guilds" icon="pi pi-server" label="Servers" i18n-label="@@servers"
 				*ngIf="loggedIn; else unauthorized" />

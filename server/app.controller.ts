@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+
 import * as path from 'node:path';
 import * as fs from 'node:fs/promises';
 import { Controller, Get, Next, Redirect, Req, Res } from '@nestjs/common';
@@ -14,8 +16,11 @@ export class AppController {
 
 	@Get('/')
 	@Redirect('/en')
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	main() {}
+
+	@Get('/invite')
+	@Redirect('/auth/invite')
+	invite() {}
 
 	@Get('**')
 	async serveStatic(

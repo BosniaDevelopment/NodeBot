@@ -83,6 +83,10 @@ export class GuildComponent implements OnInit {
 		});
 	}
 
+	public redirect(uri: string): void {
+		location.href = uri;
+	}
+
 	public resetForm(): void {
 		this.form.reset(this.guildConfig);
 	}
