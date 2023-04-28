@@ -25,6 +25,7 @@
     "class-validator-multi-lang": "^0.130.201",
     "deep-equal": "^2.2.0",
     "ngx-dynamic-form-builder": "^2.3.3",
+    "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primeng": "^15.3.0",
     "rxjs": "~7.8.0",
