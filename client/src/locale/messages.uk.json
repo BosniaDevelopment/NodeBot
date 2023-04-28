@@ -1,5 +1,5 @@
 {
-  "locale": "ua",
+  "locale": "uk",
   "translations": {
     "server-without-bot": "NodeBot не є учасником {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, тому ви не можете налаштувати цей сервер.",
     "cancel": "Відкинути зміни",

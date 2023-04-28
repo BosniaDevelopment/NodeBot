@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { BotConfigModule } from './bot-config/bot-config.module';
-import { CoreModule } from './services/core.module';
+import { CoreModule } from './core/core.module';
 
 @Module({
 	imports: [

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Server } from '@prisma/client';
-import { PrismaService } from '@/services/prisma.service';
+import { PrismaService } from '@/core/services/prisma.service';
 
 @Injectable()
 export class GuildConfigService {

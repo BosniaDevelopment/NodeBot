@@ -8,10 +8,11 @@ import { Component } from '@angular/core';
 export class LocaleSwitcherComponent {
 	public readonly locales: Record<string, string> = {
 		'en': 'English',
-		'ua': 'Українська'
+		'uk': 'Українська'
 	};
 
 	public redirect(locale: string): void {
+		document.cookie = `locale=${locale}`;
 		location.href = `/${locale}`;
 	}
 }
