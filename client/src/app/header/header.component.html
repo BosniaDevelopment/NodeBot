@@ -7,7 +7,7 @@
             <img src="assets/nodebot-title.png" alt="NodeBot" class="title" routerLink="/">
         </ng-template>
         <ng-template pTemplate="end">
-            <nav>
+            <nav class="links">
                 <p-button class="home" i18n="@@home" routerLink="/">Home</p-button>
                 <div class="authorized" *ngIf="authorized; else unauthorized">
                     <p-button icon="pi pi-server" i18n-label="@@servers" label="Servers" routerLink="/guilds"
