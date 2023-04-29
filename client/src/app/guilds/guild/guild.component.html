@@ -10,11 +10,13 @@
 </p-card>
 
 <ng-template #hasBot>
-	<p-card>
+	<p-card styleClass="ml-5 mr-5">
 		<div class="guild">
-			<img [src]="guild.iconUrl" [alt]="guild.name" class="guild-icon" />
-
-			<h2>{{ guild.name }}</h2>
+			<div class="head">
+				<img [src]="guild.iconUrl" [alt]="guild.name" class="guild-icon" />
+				
+				<h2>{{ guild.name }}</h2>
+			</div>
 
 			<p-divider />
 
