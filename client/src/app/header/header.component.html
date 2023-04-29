@@ -5,7 +5,7 @@
         </ng-template>
         <ng-template pTemplate="end">
             <nav>
-                <p-button i18n="@@home" routerLink="/">Home</p-button>
+                <p-button class="home" i18n="@@home" routerLink="/">Home</p-button>
                 <div class="authorized" *ngIf="authorized; else unauthorized">
                     <p-button icon="pi pi-server" i18n-label="@@servers" label="Servers" routerLink="/guilds" />
                     <p-button icon="pi pi-user" styleClass="p-button-rounded"

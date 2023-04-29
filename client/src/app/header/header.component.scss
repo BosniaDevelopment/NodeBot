@@ -1,3 +1,7 @@
+header {
+    min-width: 500px;
+}
+
 .title {
     height: 3.5rem;
     cursor: pointer;
@@ -28,4 +32,10 @@ p-button {
 
 .id {
     margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+	.home {
+        display: none;
+    }
 }
