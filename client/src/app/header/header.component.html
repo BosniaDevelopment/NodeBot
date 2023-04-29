@@ -4,7 +4,8 @@
         '-webkit-backdrop-filter': 'blur(15px)',
     }">
         <ng-template pTemplate="start">
-            <img src="assets/nodebot-title.png" alt="NodeBot" class="title" routerLink="/">
+            <img [src]="screenWidth >= 500 ? 'assets/nodebot-title.png' : 'assets/nodebot.png'" alt="NodeBot"
+                class="title" routerLink="/" />
         </ng-template>
         <ng-template pTemplate="end">
             <nav class="links">
