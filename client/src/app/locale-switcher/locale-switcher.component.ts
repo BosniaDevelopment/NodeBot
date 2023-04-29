@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-locale-switcher',
@@ -11,8 +12,12 @@ export class LocaleSwitcherComponent {
 		'uk': 'Українська'
 	};
 
+	public constructor(
+		private readonly router: Router
+	) { }
+
 	public redirect(locale: string): void {
 		document.cookie = `locale=${locale}`;
-		location.href = `/${locale}`;
+		location.href = `/${locale}/${this.router.url}`;
 	}
 }
