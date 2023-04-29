@@ -22,7 +22,7 @@ async function main() {
 
 	app.useGlobalPipes(new ValidationPipe);
 
-	await app.listen(process.env.PORT);
+	await app.listen(process.env.PORT, '0.0.0.0');
 
 	if (process.env.NODE_ENV === 'development') {
 		const watchPath = join(__dirname, '..', 'client');
