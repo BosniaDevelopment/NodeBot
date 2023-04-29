@@ -5,7 +5,7 @@ import { UserService } from './core/services';
 	selector: 'app-root',
 	template: `
 		<app-header />
-		<main>
+		<main [style]="{ 'margin-top': '20vh' }">
 			<router-outlet />
 		</main>
 		<p-messages />

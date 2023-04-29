@@ -7,12 +7,12 @@
 				moderator and companion for admins with open source code
 			</p>
 			<p-button class="add-bot" (onClick)="redirect('/invite')" icon="pi pi-discord"
-				label="Add the bot" i18n-label="@@add-bot" />
+				label="Add the bot" i18n-label="@@add-bot" styleClass="mb-2 mr-2" />
 			<p-button routerLink="/guilds" icon="pi pi-server" label="Servers" i18n-label="@@servers"
-				*ngIf="loggedIn; else unauthorized" />
+				*ngIf="loggedIn; else unauthorized" styleClass="mb-2" />
 			<ng-template #unauthorized>
 				<p-button (onClick)="redirect('/auth')" icon="pi pi-sign-in" i18n-label="@@login"
-					label="Log in"></p-button>
+					label="Log in" styleClass="mb-2" />
 			</ng-template>
 		</div>
 	</p-card>

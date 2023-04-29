@@ -24,6 +24,10 @@ export class HeaderComponent implements OnInit {
 		private readonly router: Router
 	) {}
 
+	public get screenWidth() {
+		return window.innerWidth;
+	}
+
 	public ngOnInit(): void {
 		this.userService.user.subscribe((user) => {
 			if (typeof user !== 'object') {
