@@ -7,10 +7,14 @@ export const Locale = createParamDecorator((_: void, ctx: ExecutionContext) => {
 
 	const { cookie = '', ['accept-language']: acceptLanguage } = req.headers;
 
-	let browserLocale = acceptLanguage
-		.split(',')
-		.map((str) => str.replace(/;.*$/, ''))
-		.find((locale) => supported.includes(locale));
+	let browserLocale: string;
+
+	if (typeof acceptLanguage === 'string') {
+		browserLocale = acceptLanguage
+			.split(',')
+			.map((str) => str.replace(/;.*$/, ''))
+			.find((locale) => supported.includes(locale));
+	}
 
 	browserLocale ??= 'en';
 
