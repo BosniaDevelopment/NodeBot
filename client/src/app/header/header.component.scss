@@ -5,6 +5,7 @@ header {
     left: $margin;
     position: fixed;
     margin-bottom: $margin;
+    z-index: 10;
 }
 
 .title {
