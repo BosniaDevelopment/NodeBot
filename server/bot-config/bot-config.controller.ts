@@ -10,12 +10,22 @@ import { EditGuildConfig } from '@common/dto/edit-guild-config.dto';
 export class BotConfigController {
 	public constructor(private readonly guildConfigService: GuildConfigService) {}
 
+	public canConfigure(guild?: PartialGuild): void {
+		const permissions = +(guild?.permissions ?? '0');
+		const isAdministrator = !!(permissions & 8);
+		const canManageServer = !!(permissions & 32);
+
+		if (guild?.owner || canManageServer || isAdministrator)
+			return;
+
+		throw new HttpException('You are not owner on this guild', HttpStatus.BAD_REQUEST);
+	}
+
 	@Get('/:guildId')
 	public async getConfig(@Param('guildId') guildId: string, @Guilds() guilds: PartialGuild[]) {
 		const guild = guilds.find((guild) => guild.id === guildId);
 
-		if (!guild || !guild.owner)
-			throw new HttpException('You are not owner on this guild', HttpStatus.BAD_REQUEST);
+		this.canConfigure(guild);
 
 		return await this.guildConfigService.getConfig(guild.id);
 	}
@@ -30,8 +40,7 @@ export class BotConfigController {
 
 		const guild = guilds.find((guild) => guild.id === guildId);
 
-		if (!guild || !guild.owner)
-			throw new HttpException('You are not owner on this guild', HttpStatus.BAD_REQUEST);
+		this.canConfigure(guild);
 
 		await this.guildConfigService.edit({ id: guild.id, ...config });
 
