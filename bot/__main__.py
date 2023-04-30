@@ -1,6 +1,5 @@
 from rich import print
 
-
 if __name__ == '__main__':
     print('[italic]Preparing[/]')
     from .main import start
