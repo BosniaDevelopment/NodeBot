@@ -1,13 +1,13 @@
 {
   "locale": "en",
   "translations": {
-    "server-without-bot": "NodeBot is not member of {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, so you can't configure this server.",
+    "server-without-bot": " NodeBot is not member of {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, so you can't configure this server. ",
+    "return-to-servers-list": "Return to servers list",
     "add-bot": "Add the bot",
-    "return-to-servers-list": " Return to servers list ",
     "cancel": "Cancel",
     "submit": "Submit",
-    "1862030086361701110": "@@form-field-antiSpam",
-    "1914359071702511914": "@@form-field-antiSpamMaxFrequency",
+    "5339993868908020023": "Spam protection",
+    "8819251633517523811": "Maximum messages frequency",
     "your-servers": "Your servers",
     "home": "Home",
     "servers": "Servers",
