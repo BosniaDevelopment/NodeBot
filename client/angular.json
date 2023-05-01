@@ -8,9 +8,8 @@
 			"i18n": {
 				"sourceLocale": "en",
 				"locales": {
-					"uk": {
-						"translation": "src/locale/messages.uk.json"
-					}
+					"uk": "src/locale/messages.uk.json",
+					"ru": "src/locale/messages.ru.json"
 				}
 			},
 			"schematics": {
