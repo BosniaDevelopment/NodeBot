@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class LocaleSwitcherComponent {
 	public readonly locales: Record<string, string> = {
 		'en': 'English',
+		'ru': 'Русский',
 		'uk': 'Українська'
 	};
 
