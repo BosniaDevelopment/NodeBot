@@ -22,7 +22,7 @@ export class UserService {
 
 	public fetchInfo(): void {
 		this.setAuth('fetching');
-		
+
 		const authorization = this.accessTokenService.getAccessToken();
 
 		if (!authorization) return this.destroyAuth();
@@ -44,11 +44,17 @@ export class UserService {
 		this.userSubject.next('unauthorized');
 	}
 
-	public logIn(code: string): void {
-		this.api.post<{ code: string }>('/auth', { code }).subscribe(({ code: accessToken }) => {
-			console.log('got token', accessToken);
-			this.accessTokenService.saveAccessToken(accessToken);
-			this.fetchInfo();
+	public logIn(code: string): Promise<void> {
+		return new Promise<void>((resolve, reject) => {
+			this.api.post<{ code: string }>('/auth', { code }).subscribe({
+				error: reject,
+				next: ({ code: accessToken }) => {
+					console.log('got token', accessToken);
+					this.accessTokenService.saveAccessToken(accessToken);
+					this.fetchInfo();
+					resolve();
+				},
+			});
 		});
 	}
 }

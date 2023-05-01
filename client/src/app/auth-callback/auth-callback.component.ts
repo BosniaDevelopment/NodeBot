@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { tap } from 'rxjs';
 import { UserService } from '@/core/services';
 
 @Component({
@@ -19,19 +18,19 @@ export class AuthCallbackComponent implements OnInit {
 		location.href = '/auth';
 	}
 
-	public ngOnInit(): void {
+	public async ngOnInit(): Promise<void> {
 		const code = this.route.snapshot.queryParams['code'];
 
 		if (!code || typeof code !== 'string')
 			return this.reAuth();
 
-		this.userService.logIn(code);
+		try {
+			await this.userService.logIn(code);
+		} catch {
+			location.href = '/auth';
+			return;
+		}
 
-		this.userService.user.pipe(tap(user => {
-			if (!user)
-				return this.reAuth();
-
-			this.router.navigate(['/']);
-		}));
+		this.router.navigate([ '/guilds' ]);
 	}
 }
