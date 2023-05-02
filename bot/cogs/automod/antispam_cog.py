@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from bot.locale import LocaledEmbed, LocaledOption
+from bot.locale import LocaledEmbed
 from bot.modules.db.request_status import RequestStatus
 from bot.modules.db.servers.servers_service import ServerService
 
@@ -15,5 +15,4 @@ class AntiSpamCog(commands.Cog):
 
 
 def setup(bot: commands.Bot):
-    print(LocaledOption('name').on_guild_join_message)
     bot.add_cog(AntiSpamCog(bot))

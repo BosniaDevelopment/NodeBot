@@ -14,131 +14,131 @@ from bot.utils.constants.titles import EMBED_TITLE_TEMPLATE
 
 # EN: timeout
 # RU: тайм-аут
-# UA: ...
-LC_COG_COMMAND_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_NAME: Final[str] = ""
 
 # EN: The command to timeout member
 # RU: Команда для тайм-аута участника
-# UA: ...
-LC_COG_COMMAND_DESCRIPTION: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_DESCRIPTION: Final[str] = ""
 
 # EN: member
 # RU: участник
-# UA: ...
-LC_COG_COMMAND_OPTION_MEMBER_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_MEMBER_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_MEMBER_DESCRIPTION = LC_COG_COMMAND_OPTION_MEMBER_NAME.capitalize()
 
 # EN: microseconds
 # RU: микросекунды
-# UA: ...
-LC_COG_COMMAND_OPTION_MICROSECONDS_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_MICROSECONDS_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_MICROSECONDS_DESCRIPTION = LC_COG_COMMAND_OPTION_MICROSECONDS_NAME
 
 # EN: milliseconds
 # RU: миллисекунды
-# UA: ...
-LC_COG_COMMAND_OPTION_MILLISECONDS_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_MILLISECONDS_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_MILLISECONDS_DESCRIPTION = LC_COG_COMMAND_OPTION_MILLISECONDS_NAME.capitalize()
 
 # EN: seconds
 # RU: секунды
-# UA: ...
-LC_COG_COMMAND_OPTION_SECONDS_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_SECONDS_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_SECONDS_DESCRIPTION = LC_COG_COMMAND_OPTION_SECONDS_NAME.capitalize()
 
 # EN: minutes
 # RU: минуты
-# UA: ...
-LC_COG_COMMAND_OPTION_MINUTES_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_MINUTES_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_MINUTES_DESCRIPTION = LC_COG_COMMAND_OPTION_MINUTES_NAME.capitalize()
 
 # EN: hours
 # RU: часы
-# UA: ...
-LC_COG_COMMAND_OPTION_HOURS_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_HOURS_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_HOURS_DESCRIPTION = LC_COG_COMMAND_OPTION_HOURS_NAME.capitalize()
 
 # EN: days
 # RU: дни
-# UA: ...
-LC_COG_COMMAND_OPTION_DAYS_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_DAYS_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_DAYS_DESCRIPTION = LC_COG_COMMAND_OPTION_DAYS_NAME.capitalize()
 
 # EN: weeks
 # RU: недели
-# UA: ...
-LC_COG_COMMAND_OPTION_WEEKS_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_WEEKS_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_WEEKS_DESCRIPTION = LC_COG_COMMAND_OPTION_WEEKS_NAME.capitalize()
 
 # EN: reason
 # RU: причина
-# UA: ...
-LC_COG_COMMAND_OPTION_REASON_NAME: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_REASON_NAME: Final[str] = ""
 
 LC_COG_COMMAND_OPTION_REASON_DESCRIPTION = LC_COG_COMMAND_OPTION_REASON_NAME.capitalize()
 
 # EN: For no reason
 # RU: Без причины
-# UA: ...
-LC_COG_COMMAND_OPTION_REASON_DEFAULT: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_OPTION_REASON_DEFAULT: Final[str] = ""
 
 # EN: Timeout
 # RU: Тайм-аут
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_TITLE: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_TITLE: Final[str] = ""
 
 # EN: The moderator <@{moderator_id}> sent into a timeout member <@{member_id}>
 # RU: Модератор <@{moderator_id}> отправил в тайм-аут участника <@{member_id}>
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION: Final[str] = ""
 
 # EN: Duration
 # RU: Продолжительность
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION: Final[str] = ""
 
 # EN: microseconds
 # RU: микросекунд
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_MICROSECONDS: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_MICROSECONDS: Final[str] = ""
 
 # EN: milliseconds
 # RU: миллисекунд
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_MILLISECONDS: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_MILLISECONDS: Final[str] = ""
 
 # EN: seconds
 # RU: секунд
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_SECONDS: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_SECONDS: Final[str] = ""
 
 # EN: minutes
 # RU: минут
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_MINUTES: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_MINUTES: Final[str] = ""
 
 # EN: hours
 # RU: часов
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_HOURS: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_HOURS: Final[str] = ""
 
 # EN: days
 # RU: дней
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_DAYS: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_DAYS: Final[str] = ""
 
 # EN: weeks
 # RU: недель
-# UA: ...
-LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_WEEKS: Final[str] = ...
+# UA: ""
+LC_COG_COMMAND_CALLBACK_EMBED_DESCRIPTION_DURATION_WEEKS: Final[str] = ""
 
 # Не трожь
 COG_COMMAND_CALLBACK_EMBED_TITLE = EMBED_TITLE_TEMPLATE.format(

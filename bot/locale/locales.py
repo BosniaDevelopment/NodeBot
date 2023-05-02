@@ -33,18 +33,27 @@ class LocaledEmbed(LocaleModel):
         return discord.Embed(description=text)
 
 
-class LocaledOption(LocaleModel):
-    def __init__(self, option: str):
-        self.option = option
-
+class LocaledOptionName(LocaleModel):
     def __getattribute__(self, item) -> dict:
-        option = object.__getattribute__(self, 'option')
         return {
-            option: Locales().__getattribute__('en_US')().get(item),
-            f'{option}_localizations': dict(
+            f'name_localizations': dict(
                 map(
                     lambda i, j: (i, j),
-                    list(Locales.ALL),
+                    [item.replace('_', '-') for item in list(Locales.ALL)],
+                    [Locales().__getattribute__(loc)().get(item) for loc in list(Locales.ALL)]
+                )
+            )
+        }
+
+
+class LocaledOptionDescription(LocaleModel):
+    def __getattribute__(self, item) -> dict:
+        return {
+            'description': Locales().__getattribute__('en_US')().get(item),
+            f'description_localizations': dict(
+                map(
+                    lambda i, j: (i, j),
+                    [item.replace('_', '-') for item in list(Locales.ALL)],
                     [Locales().__getattribute__(loc)().get(item) for loc in list(Locales.ALL)]
                 )
             )
