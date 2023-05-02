@@ -1,13 +1,19 @@
-import discord
+from discord import Embed
+
 from .locale import LocaleModel
-from .en_US import en_US
-from .uk import uk
+
+from .LC_en_US import LC_en_US
+from .LC_ru import LC_ru
+from .LC_uk import LC_uk
 
 
 class Locales:
-    ALL = ['en_US', 'uk']
-    en_US = en_US
-    uk = uk
+
+    ALL = ["_LC_en_US", "_LC_ru", "_LC_uk"]
+
+    _LC_en_US = LC_en_US
+    _LC_ru = LC_ru
+    _LC_uk = LC_uk
 
 
 class Localed(LocaleModel):
@@ -25,12 +31,12 @@ class LocaledEmbed(LocaleModel):
     def __init__(self, guild_default_locale: str):
         self.locale = get_locale(guild_default_locale)
 
-    def __getattribute__(self, item) -> discord.Embed:
+    def __getattribute__(self, item) -> Embed:
         try:
             text = Locales().__getattribute__(object.__getattribute__(self, 'locale'))().get(item)
         except AttributeError:
             text = Locales().__getattribute__('en_US')().get(item)
-        return discord.Embed(description=text)
+        return Embed(description=text)
 
 
 class LocaledOptionName(LocaleModel):
