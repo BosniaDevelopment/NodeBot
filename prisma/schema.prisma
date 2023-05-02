@@ -14,6 +14,8 @@ datasource db {
 
 model Server {
     id                   String  @id @map("_id")
+    // я это для теста добавил
+    kefir                Boolean @default(true)
     antiSpam             Boolean @default(false)
     antiSpamMaxFrequency Int     @default(0)
 }
