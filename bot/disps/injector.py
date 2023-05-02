@@ -1,11 +1,12 @@
 import os
 import importlib
 from pathlib import Path
+from typing import Type
 from .dispmain import NodeBot
 from dyndesign import mergeclasses
 
 
-def inject() -> NodeBot:
+def inject() -> Type[NodeBot] | type:
     nodebot = NodeBot
     nodebot.loader_funcs = list()
 

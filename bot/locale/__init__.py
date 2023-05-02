@@ -1,1 +1,1 @@
-from .locales import Localed, LocaledEmbed, get_locale
+from .locales import Localed, LocaledEmbed, LocaledOption, get_locale

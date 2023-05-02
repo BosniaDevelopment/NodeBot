@@ -6,7 +6,7 @@ from prisma.types import ServerCreateInput
 from typing_extensions import Unpack
 
 
-class ServerService():
+class ServerService:
     def __init__(self, **kwargs: Unpack[ServerCreateInput]):
         self.id = kwargs['id']
 
