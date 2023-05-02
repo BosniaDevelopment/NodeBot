@@ -7,3 +7,6 @@ class uk(LocaleModel):
                             f'[панель]({CommonStrings.nodebot_panel_url})'
     on_old_guild_join_message = f'Знову привіт! NodeBot вже працює на цьому сервері, але ви можете змінити його ' \
                                 f'конфігурацію, відвідавши [панель]({CommonStrings.nodebot_panel_url})'
+    get_member_command_description = 'Отримати учасника'
+    member_option_name = 'учасник'
+    member_option_description = 'Тег учасника'

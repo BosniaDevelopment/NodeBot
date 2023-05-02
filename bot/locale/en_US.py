@@ -7,3 +7,6 @@ class en_US(LocaleModel):
                             f'[panel]({CommonStrings.nodebot_panel_url})'
     on_old_guild_join_message = f'Hello again! NodeBot is already running on this server, but you can change its ' \
                                 f'configuration by visiting [panel]({CommonStrings.nodebot_panel_url})'
+    get_member_command_description = 'Gets member'
+    member_option_name = 'member'
+    member_option_description = 'Tag a member'
