@@ -4,18 +4,21 @@ import { Guilds } from '@/auth/decorators';
 import { AuthGuard } from '@/auth/auth.guard';
 import { GuildConfigService } from './guild-config.service';
 import { EditGuildConfig } from '@common/dto/edit-guild-config.dto';
+import { Permission } from '@common/permissions';
+import { BotService } from '@/core/services/bot/bot.service';
 
 @Controller('api/bot-config')
 @UseGuards(AuthGuard)
 export class BotConfigController {
-	public constructor(private readonly guildConfigService: GuildConfigService) {}
+	public constructor(
+		private readonly guildConfigService: GuildConfigService,
+		private readonly botService: BotService
+	) {}
 
 	public canConfigure(guild?: PartialGuild): void {
 		const permissions = +(guild?.permissions ?? '0');
-		const isAdministrator = !!(permissions & 8);
-		const canManageServer = !!(permissions & 32);
-
-		if (guild?.owner || canManageServer || isAdministrator)
+		
+		if (new Permission(permissions).has(Permission.Flags.ManageServer))
 			return;
 
 		throw new HttpException('You are not owner on this guild', HttpStatus.BAD_REQUEST);
@@ -28,6 +31,15 @@ export class BotConfigController {
 		this.canConfigure(guild);
 
 		return await this.guildConfigService.getConfig(guild.id);
+	}
+
+	@Get('/:guildId/public')
+	public async getPublicInfo(@Param('guildId') guildId: string) {
+		try {
+			return await this.botService.getGuildInfo(guildId);
+		} catch {
+			return null;
+		}
 	}
 
 	@Put('/:guildId')

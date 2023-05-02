@@ -16,6 +16,8 @@
 				<img [src]="guild.iconUrl" [alt]="guild.name" class="guild-icon" />
 				
 				<h2>{{ guild.name }}</h2>
+
+				<p-messages [value]="[{ severity: 'warn', detail: notAdminMessage }]" *ngIf="!isBotAdmin" />
 			</div>
 
 			<p-divider />

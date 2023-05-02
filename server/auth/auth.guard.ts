@@ -27,6 +27,8 @@ export class AuthGuard implements CanActivate {
 		request[AuthGuard.userInfo] = await this.authService.getUserInfo(accessToken);
 		request[AuthGuard.guilds] = await this.authService.getGuilds(accessToken);
 
+
+
 		return true;
 	}
 }

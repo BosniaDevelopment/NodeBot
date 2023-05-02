@@ -8,6 +8,7 @@ import { plainToInstance } from 'class-transformer';
 import { MessageService } from 'primeng/api';
 import { GuildConfigService } from '@/core/services';
 import { EditGuildConfig } from './schema';
+import { Permission, permissions } from '@common/permissions';
 
 @Component({
 	selector: 'app-guild',
@@ -16,9 +17,12 @@ import { EditGuildConfig } from './schema';
 	providers: [MessageService],
 })
 export class GuildComponent implements OnInit {
+	public notAdminMessage = $localize`NodeBot is not administrator on this server, so it can work improperly`;
+
 	public guild!: Guild;
 	public guildConfig: Omit<Server, 'id'> | null = null;
 	public form!: DynamicFormGroup<EditGuildConfig>;
+	public publicInfo!: IGuildPublicInfo;
 
 	public showSaveOverlay = true;
 
@@ -28,6 +32,10 @@ export class GuildComponent implements OnInit {
 
 	public get hasChanges(): boolean {
 		return deepEqual(this.form.object, this.guildConfig, { strict: true });
+	}
+
+	public get isBotAdmin(): boolean {
+		return permissions(this.publicInfo.botPermissions).has(Permission.Flags.ManageServer);
 	}
 
 	public readonly defaultConfig: Record<string, never> = plainToInstance(EditGuildConfig, {
@@ -43,13 +51,14 @@ export class GuildComponent implements OnInit {
 
 	public ngOnInit(): void {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		this.route.data.subscribe(({ guild, guildConfig }) => {
+		this.route.data.subscribe(({ guild, guildConfig: { config: guildConfig, publicInfo } }) => {
 			this.guild = guild;
 			
 			if (!guildConfig) return;
 
 			const { id, ...rest } = guildConfig;
-			console.log(id, rest);
+			console.log(id, rest, publicInfo);
+			this.publicInfo = publicInfo;
 
 			this.guildConfig = rest as Omit<Server, 'id'>;
 			

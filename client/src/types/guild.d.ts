@@ -5,3 +5,8 @@ declare interface IGuild {
     readonly owner?: boolean;
     readonly permissions: number;
 }
+
+declare interface IGuildPublicInfo {
+    botPermissions: string;
+    textChannels: Record<string, string>;
+}
