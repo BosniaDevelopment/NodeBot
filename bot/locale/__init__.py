@@ -1,3 +1,3 @@
 """"""
 
-from .locale import locales
+pass
