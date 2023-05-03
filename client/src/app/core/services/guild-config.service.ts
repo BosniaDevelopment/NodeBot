@@ -3,7 +3,7 @@ import type { Server } from '@prisma/client';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { AccessTokenService } from './access-token.service';
-import { EditGuildConfig } from '@/guilds/guild/schema';
+import { EditGuildConfig } from '@common/dto/edit-guild-config.dto';
 
 @Injectable({
 	providedIn: 'root',

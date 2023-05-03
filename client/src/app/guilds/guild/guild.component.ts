@@ -7,7 +7,7 @@ import deepEqual from 'deep-equal';
 import { plainToInstance } from 'class-transformer';
 import { MessageService } from 'primeng/api';
 import { GuildConfigService } from '@/core/services';
-import { EditGuildConfig } from './schema';
+import { EditGuildConfig, meta } from './schema';
 import { Permission, permissions } from '@common/permissions';
 
 @Component({
@@ -26,7 +26,7 @@ export class GuildComponent implements OnInit {
 
 	public showSaveOverlay = true;
 
-	public formI18n = EditGuildConfig.meta;
+	public formI18n = meta;
 
 	private readonly formBuilder = new DynamicFormBuilder();
 
@@ -39,6 +39,7 @@ export class GuildComponent implements OnInit {
 	}
 
 	public readonly defaultConfig: Record<string, never> = plainToInstance(EditGuildConfig, {
+		locale: 'default',
 		antiSpam: false,
 		antiSpamMaxFrequency: 0,
 	}) as unknown as Record<string, never>;
@@ -64,8 +65,10 @@ export class GuildComponent implements OnInit {
 			
 			const configCopy = { ...this.guildConfig };
 
-			this.form = this.formBuilder.rootFormGroup(EditGuildConfig, configCopy);
-			this.form.object = plainToInstance(EditGuildConfig, configCopy);
+			const inst = plainToInstance(EditGuildConfig, configCopy);
+
+			this.form = this.formBuilder.rootFormGroup(EditGuildConfig, inst);
+			this.form.object = inst;
 		});
 	}
 

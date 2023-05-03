@@ -1,11 +1,12 @@
-import type { Server } from '@prisma/client';
-import { Expose } from 'class-transformer';
-import { IsBoolean, IsNumber, IsNumberString, Min } from 'class-validator';
+import type { Server, Locale } from '@prisma/client';
+import { Expose } from 'class-transformer-global-storage';
+import { IsBoolean, IsNumber, IsNumberString, Min, IsIn, IsString } from 'class-validator';
 
 export class EditGuildConfig implements Omit<Server, 'id'> {
 	@Expose()
-	@IsBoolean()
-	public kefir: boolean;
+	@IsString()
+	@IsIn([ 'default', 'en_US', 'ru', 'uk' ] as Locale[])
+	public locale!: Locale;
 
 	@Expose()
 	@IsBoolean()
