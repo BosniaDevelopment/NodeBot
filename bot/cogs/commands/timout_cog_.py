@@ -151,8 +151,6 @@ class TimeoutCog(Cog):
 
     def __init__(self, bot: Bot) -> None:
         """"""
-        super().__init__()
-
         self.bot = bot
 
     @command(name=LC_COG_COMMAND_NAME, description=LC_COG_COMMAND_DESCRIPTION)

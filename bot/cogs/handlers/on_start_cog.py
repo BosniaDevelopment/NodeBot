@@ -1,19 +1,32 @@
-import discord
-from discord.ext import commands
+""""""
+
+from discord import Cog, Bot, Activity, ActivityType
 from rich import print
 
+from bot import __version__
 
-class OnStartCog(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+
+class OnStartCog(Cog):
+    """"""
+
+    def __init__(self, bot: Bot):
+        """"""
         self.bot = bot
 
-    @commands.Cog.listener()
+    @Cog.listener()
     async def on_ready(self):
-        print(f"[green]Started[/] as [italic]{self.bot.user.name}#{self.bot.user.discriminator}[/]")
-        await self.bot.change_presence(
-            activity=discord.Activity(type=discord.ActivityType.listening, name="xMml")
-        )
+        """"""
+        username = self.bot.user.name
+        discriminator = self.bot.user.discriminator
+
+        print(f"[green]Started[/] as [italic]{username}#{discriminator}[/]")
+
+        activity = Activity(name=f"v{__version__}",
+                            type=ActivityType.listening)
+
+        await self.bot.change_presence(activity=activity)
 
 
-def setup(bot: commands.Bot):
+def setup(bot: Bot):
+    """"""
     bot.add_cog(OnStartCog(bot))
