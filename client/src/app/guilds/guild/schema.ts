@@ -3,10 +3,15 @@ import { Expose } from 'class-transformer-global-storage';
 import { IsBoolean, IsNumber, Min } from 'class-validator';
 
 export class EditGuildConfig implements Omit<Server, 'id'> {
-	public static readonly i18n: Record<keyof EditGuildConfig, string> = {
+	public static readonly meta: Record<keyof EditGuildConfig, string> = {
 		antiSpam: $localize`Spam protection`,
-		antiSpamMaxFrequency: $localize`Maximum messages frequency`
+		antiSpamMaxFrequency: $localize`Maximum messages frequency`,
+		kefir: 'Kefir',
 	};
+
+	@Expose()
+	@IsBoolean()
+	public kefir!: boolean;
 
 	@Expose()
 	@IsBoolean()

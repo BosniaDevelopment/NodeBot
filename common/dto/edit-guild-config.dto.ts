@@ -5,6 +5,10 @@ import { IsBoolean, IsNumber, IsNumberString, Min } from 'class-validator';
 export class EditGuildConfig implements Omit<Server, 'id'> {
 	@Expose()
 	@IsBoolean()
+	public kefir: boolean;
+
+	@Expose()
+	@IsBoolean()
 	public antiSpam!: boolean;
 
 	@Expose()
