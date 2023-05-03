@@ -1,19 +1,16 @@
 from discord import Embed
-
 from .locale import LocaleModel
-
 from .LC_en_US import LC_en_US
 from .LC_ru import LC_ru
 from .LC_uk import LC_uk
 
 
 class Locales:
+    ALL = ["en_US", "ru", "uk"]
 
-    ALL = ["_LC_en_US", "_LC_ru", "_LC_uk"]
-
-    _LC_en_US = LC_en_US
-    _LC_ru = LC_ru
-    _LC_uk = LC_uk
+    en_US = LC_en_US
+    ru = LC_ru
+    uk = LC_uk
 
 
 class Localed(LocaleModel):
