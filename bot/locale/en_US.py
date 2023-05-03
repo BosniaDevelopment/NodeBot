@@ -1,6 +1,5 @@
-""""""
-
-from .discord import discord_locales
+from .locale import LocaleModel
+from .locale import Locale
 from .common import PANEL_URL
 
 
@@ -13,5 +12,9 @@ ON_OLD_GUILD_JOIN_MESSAGE = (
     f" can change its configuration by visiting [panel]({PANEL_URL})"
 )
 
-en_US_on_guild_join_message = {discord_locales.UNITED_STATES: ON_GUILD_JOIN_MESSAGE}
-en_US_on_old_guild_join_message = {discord_locales.UNITED_STATES: ON_OLD_GUILD_JOIN_MESSAGE}
+en_US_locale_model = LocaleModel(
+    on_guild_join_message=ON_GUILD_JOIN_MESSAGE,
+    on_old_guild_join_message=ON_OLD_GUILD_JOIN_MESSAGE
+)
+
+en_US_locale = Locale("en-US", en_US_locale_model)

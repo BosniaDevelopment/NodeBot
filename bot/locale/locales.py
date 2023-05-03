@@ -1,24 +1,14 @@
-""""""
+from .locale import Locales
 
-from dataclasses import dataclass
-
-
-@dataclass
-class DiscordLocales:
-    """"""
-
-    UNITED_KINGDOM: str
-    UNITED_STATES: str
-
-    RUSSIAN: str
-    UKRAINIAN: str
+from .en_GB import en_GB_locale
+from .en_US import en_US_locale
+from .ru import ru_locale
+from .uk import uk_locale
 
 
-@dataclass
-class Locales:
-    """"""
-
-    on_guild_join_message: dict[DiscordLocales, str]
-    on_old_guild_join_message: dict[DiscordLocales, str]
-
-
+locales = Locales(
+    en_GB=en_GB_locale,
+    en_US=en_US_locale,
+    uk=uk_locale,
+    ru=ru_locale,
+)

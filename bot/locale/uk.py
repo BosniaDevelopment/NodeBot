@@ -1,6 +1,5 @@
-""""""
-
-from .discord import discord_locales
+from .locale import LocaleModel
+from .locale import Locale
 from .common import PANEL_URL
 
 
@@ -13,5 +12,9 @@ ON_OLD_GUILD_JOIN_MESSAGE = (
     f" змінити його конфігурацію, відвідавши [панель]({PANEL_URL})"
 )
 
-uk_on_guild_join_message = {discord_locales.UKRAINIAN: ON_GUILD_JOIN_MESSAGE}
-uk_on_old_guild_join_message = {discord_locales.UKRAINIAN: ON_OLD_GUILD_JOIN_MESSAGE}
+uk_locale_model = LocaleModel(
+    on_guild_join_message=ON_GUILD_JOIN_MESSAGE,
+    on_old_guild_join_message=ON_OLD_GUILD_JOIN_MESSAGE
+)
+
+uk_locale = Locale("uk", uk_locale_model)

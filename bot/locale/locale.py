@@ -1,27 +1,34 @@
 """"""
 
-from .locales import Locales
-
-from .en_GB import en_GB_on_guild_join_message, en_GB_on_old_guild_join_message
-from .en_US import en_US_on_guild_join_message, en_US_on_old_guild_join_message
-from .ru import ru_on_guild_join_message, ru_on_old_guild_join_message
-from .uk import uk_on_guild_join_message, uk_on_old_guild_join_message
+from dataclasses import dataclass
 
 
-on_guild_join_message = (
-    en_GB_on_guild_join_message |
-    en_US_on_guild_join_message |
-    ru_on_guild_join_message |
-    uk_on_guild_join_message
-)
-on_old_guild_join_message = (
-    en_GB_on_old_guild_join_message |
-    en_US_on_old_guild_join_message |
-    ru_on_old_guild_join_message |
-    uk_on_old_guild_join_message
-)
+@dataclass
+class LocaleModel:
+    """"""
 
-locales = Locales(
-    on_guild_join_message=on_guild_join_message,
-    on_old_guild_join_message=on_old_guild_join_message
-)
+    on_guild_join_message: str
+    on_old_guild_join_message: str
+
+
+@dataclass
+class Locale:
+    """"""
+
+    code: str
+    model: LocaleModel
+
+
+@dataclass
+class Locales:
+    """"""
+
+    en_GB: Locale
+    en_US: Locale
+
+    uk: Locale
+    ru: Locale
+
+
+def get_locale_from_locales_by_str_code(locales: Locales, code: str) -> Locale:
+    return locales.__getattribute__(code.replace("-", "_"))
