@@ -11,7 +11,7 @@ class AntiSpamCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        print(message)
+        ...
 
 
 def setup(bot: commands.Bot):

@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from rich import print
+from rich import print as pprint
 
 
 class OnStartCog(commands.Cog):
@@ -9,10 +9,13 @@ class OnStartCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"[green]Started[/] as [italic]{self.bot.user.name}#{self.bot.user.discriminator}[/]")
+        from bot.config import NODEBOT_API_LISTEN_SYMBOL
+        pprint(f"[green]Started[/] as [italic]{self.bot.user.name}#{self.bot.user.discriminator}[/]")
         await self.bot.change_presence(
             activity=discord.Activity(type=discord.ActivityType.listening, name="xMml")
         )
+
+        print(NODEBOT_API_LISTEN_SYMBOL)
 
 
 def setup(bot: commands.Bot):

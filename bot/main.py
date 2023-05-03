@@ -1,10 +1,13 @@
 def start():
-    bot.run(TOKEN)
+    import asyncio
+
+    asyncio.run_coroutine_threadsafe(bot.start(TOKEN), asyncio.get_running_loop())
 
 
 def main():
     from rich import print
-    print('[italic]Preparing[/]')
+
+    print('[italic]Preparing bot[/]')
 
     from .common import NodeBot
     from .config import TOKEN

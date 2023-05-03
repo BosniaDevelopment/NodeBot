@@ -3,3 +3,6 @@ prisma
 rich
 dyndesign
 sqlitedict
+fastapi
+uvicorn
+pydantic
