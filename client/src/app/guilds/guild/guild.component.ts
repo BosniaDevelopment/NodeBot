@@ -26,7 +26,7 @@ export class GuildComponent implements OnInit {
 
 	public showSaveOverlay = true;
 
-	public formI18n = EditGuildConfig.i18n;
+	public formI18n = EditGuildConfig.meta;
 
 	private readonly formBuilder = new DynamicFormBuilder();
 
