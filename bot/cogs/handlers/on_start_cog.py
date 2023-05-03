@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from rich import print as pprint
+from rich import print
 
 
 class OnStartCog(commands.Cog):
@@ -14,7 +14,7 @@ class OnStartCog(commands.Cog):
             activity=discord.Activity(type=discord.ActivityType.listening, name="xMml")
         )
 
-        pprint(f"[green]Started[/] as [italic]{self.bot.user.name}#{self.bot.user.discriminator}[/]")
+        print(f"[green]Started[/] as [italic]{self.bot.user.name}#{self.bot.user.discriminator}[/]")
         print(NODEBOT_API_LISTEN_SYMBOL)
 
 
