@@ -4,6 +4,8 @@ export interface IGuildInfo {
 }
 
 export interface IBotStats {
+    tag: string;
+    id: string;
     servers: number;
     users: number;
 }

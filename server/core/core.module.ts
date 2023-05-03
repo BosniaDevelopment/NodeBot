@@ -10,13 +10,12 @@ import { BotService } from './services/bot/bot.service';
 		{
 			provide: BotService,
 			inject: [ConfigService],
-			// TODO: add communication with python bot
 			useFactory: (config: ConfigService) => {
 				return config.getOrThrow<string>('NODE_ENV') === 'development'
 					? import('./services/bot/bot.development.service')
 						.then(({ DevBotService }) => new DevBotService(config))
-					: import('./services/bot/bot.development.service')
-						.then(({ DevBotService }) => new DevBotService(config));
+					: import('./services/bot/bot.production.service')
+						.then(({ ProdBotService }) => new ProdBotService(config));
 			},
 		},
 	],

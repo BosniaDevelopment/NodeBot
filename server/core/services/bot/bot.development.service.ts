@@ -24,6 +24,8 @@ export class DevBotService extends BotService implements OnModuleInit {
 
 	public async getBotStats(): Promise<IBotStats> {
 		return {
+			id: this.client.user.id,
+			tag: this.client.user.tag,
 			servers: this.client.guilds.cache.size,
 			users: this.client.users.cache.size
 		};
