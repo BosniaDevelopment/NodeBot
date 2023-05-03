@@ -24,7 +24,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 				type: 'redis',
 				options: {
 					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-					// @ts-expect-error
+					// @ts-ignore
 					client: redis,
 					invalidation: { referencesTTL: 300 },
 				},
