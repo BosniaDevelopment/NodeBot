@@ -1,34 +1,15 @@
-""""""
+from discord import Embed
 
-from dataclasses import dataclass
-
-
-@dataclass
-class LocaleModel:
-    """"""
-
-    on_guild_join_message: str
-    on_old_guild_join_message: str
+from typing import TypeVar
 
 
-@dataclass
-class Locale:
-    """"""
-
-    code: str
-    model: LocaleModel
+T = TypeVar("T", str, Embed, dict)
 
 
-@dataclass
-class Locales:
-    """"""
+class LocaleModel(object):
 
-    en_GB: Locale
-    en_US: Locale
+    def get(self, name):
+        return self.__getattribute__(name)
 
-    uk: Locale
-    ru: Locale
-
-
-def get_locale_from_locales_by_str_code(locales: Locales, code: str) -> Locale:
-    return locales.__getattribute__(code.replace("-", "_"))
+    on_guild_join_message: T
+    on_old_guild_join_message: T
