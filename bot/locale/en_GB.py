@@ -1,5 +1,6 @@
-from .locale import LocaleModel
-from .locale import Locale
+""""""
+
+from .discord import discord_locales
 from .common import PANEL_URL
 
 
@@ -12,9 +13,5 @@ ON_OLD_GUILD_JOIN_MESSAGE = (
     f" can change its configuration by visiting [panel]({PANEL_URL})"
 )
 
-en_GB_locale_model = LocaleModel(
-    on_guild_join_message=ON_GUILD_JOIN_MESSAGE,
-    on_old_guild_join_message=ON_OLD_GUILD_JOIN_MESSAGE
-)
-
-en_GB_locale = Locale("en-GB", en_GB_locale_model)
+en_GB_on_guild_join_message = {discord_locales.UNITED_KINGDOM: ON_GUILD_JOIN_MESSAGE}
+en_GB_on_old_guild_join_message = {discord_locales.UNITED_KINGDOM: ON_OLD_GUILD_JOIN_MESSAGE}

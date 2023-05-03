@@ -1,5 +1,6 @@
-from .locale import LocaleModel
-from .locale import Locale
+""""""
+
+from .discord import discord_locales
 from .common import PANEL_URL
 
 
@@ -12,9 +13,5 @@ ON_OLD_GUILD_JOIN_MESSAGE = (
     f" но Вы всё равно его настроить, посетив [панель]({PANEL_URL})"
 )
 
-ru_locale_model = LocaleModel(
-    on_guild_join_message=ON_GUILD_JOIN_MESSAGE,
-    on_old_guild_join_message=ON_OLD_GUILD_JOIN_MESSAGE
-)
-
-ru_locale = Locale("ru", ru_locale_model)
+ru_on_guild_join_message = {discord_locales.RUSSIAN: ON_GUILD_JOIN_MESSAGE}
+ru_on_old_guild_join_message = {discord_locales.RUSSIAN: ON_OLD_GUILD_JOIN_MESSAGE}

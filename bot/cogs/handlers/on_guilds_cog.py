@@ -1,8 +1,7 @@
 """"""
 
 from discord import Cog, Bot, Guild, Embed
-from bot.locale.locales import locales
-from bot.locale.locale import get_locale_from_locales_by_str_code
+from bot.locale import locales
 from bot.modules.db.request_status import RequestStatus
 from bot.modules.db.servers.servers_service import ServerService
 from bot.utils.constants.colors import DEFAULT_EMBED_COLOR
@@ -23,8 +22,7 @@ class OnGuildsCog(Cog):
         if (creation_status := server_service) is RequestStatus.exists:
             ...
             code = guild.preferred_locale
-            locale = get_locale_from_locales_by_str_code(locales, code)
-            description = locale.model.on_old_guild_join_message
+            description = locales.on_guild_join_message[code]
 
             embed = Embed(
                 title="",
@@ -37,8 +35,7 @@ class OnGuildsCog(Cog):
         elif creation_status is RequestStatus.success:
             ...
             code = guild.preferred_locale
-            locale = get_locale_from_locales_by_str_code(locales, code)
-            description = locale.model.on_guild_join_message
+            description = locales.on_old_guild_join_message[code]
 
             embed = Embed(
                 title="",
