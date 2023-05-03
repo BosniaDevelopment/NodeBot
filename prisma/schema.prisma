@@ -12,10 +12,16 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+enum Locale {
+    ru
+    uk
+    en_US
+    default
+}
+
 model Server {
     id                   String  @id @map("_id")
-    // я это для теста добавил
-    kefir                Boolean @default(true)
+    locale               Locale  @default(default)
     antiSpam             Boolean @default(false)
     antiSpamMaxFrequency Int     @default(0)
 }
