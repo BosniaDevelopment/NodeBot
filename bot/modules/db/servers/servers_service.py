@@ -1,9 +1,10 @@
-from bot.commons.common import prisma
+from bot.common.common import prisma
 from bot.modules.db.request_status import RequestStatus
-import prisma
+
 from prisma.models import Server
 from prisma.types import ServerCreateInput
-from typing_extensions import Unpack
+
+from typing import Unpack
 
 
 class ServerService:
@@ -18,10 +19,11 @@ class ServerService:
                 id=str(self.id),
             ))
             status = RequestStatus.success
-        except prisma.errors.UniqueViolationError:
-            status = RequestStatus.exists
         except Exception as e:
-            from bot.modules.exc import PrettyException
+            if e.__class__ is prisma.errors.UniqueViolationError:
+                ...
+
+            from bot.modules.exceptions import PrettyException
             print(PrettyException(e).pretty_exception)
             status = RequestStatus.error
         finally:

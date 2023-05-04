@@ -1,4 +1,5 @@
 from typing import TypeVar
+from dataclasses import dataclass
 
 
 class RequestStatus:
