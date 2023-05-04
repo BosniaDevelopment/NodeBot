@@ -7,8 +7,8 @@ router = APIRouter()
 
 @router.get("/{guildId}")
 async def guilds(guildId: int) -> GuildResponse:
-    from bot.common import NodeBot
-    guild = NodeBot.get_guild(guildId)
+    from bot.commons.common import NodeBotBuilder
+    guild = NodeBotBuilder.get_guild(guildId)
 
     return GuildResponse(
         botPermissions=guild.me.guild_permissions.value,
