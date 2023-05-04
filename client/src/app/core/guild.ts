@@ -32,7 +32,7 @@ export class Guild implements IGuild {
 
 	public displayIconUrl(format: Format = 'dynamic'): string {
 		if (!this.icon)
-			return 'assets/guild-icon-placeholder.png';
+			return 'assets/guild-icon-placeholder.svg';
 
 		const base = `https://cdn.discordapp.com/icons/${this.id}/${this.icon}`;
 
