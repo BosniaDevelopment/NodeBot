@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Guild } from '@/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -24,9 +25,11 @@ export class GuildComponent implements OnInit {
 	public form!: DynamicFormGroup<EditGuildConfig>;
 	public publicInfo!: IGuildPublicInfo;
 
+	public openedCategory!: Record<string, boolean>;
+
 	public showSaveOverlay = true;
 
-	public formI18n = meta;
+	public meta = meta;
 
 	private readonly formBuilder = new DynamicFormBuilder();
 
@@ -36,6 +39,21 @@ export class GuildComponent implements OnInit {
 
 	public get isBotAdmin(): boolean {
 		return permissions(this.publicInfo.botPermissions).has(Permission.Flags.ManageServer);
+	}
+
+	public suggestions(optionName: keyof EditGuildConfig) {
+		const option = this.meta.options[optionName];
+
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		if (option.type !== 'enum-string') {
+			return [];
+		}
+
+		const keys = Object.keys(option.acceptedValues);
+		const values = Object.values(option.acceptedValues);
+
+		return keys;
 	}
 
 	public readonly defaultConfig: Record<string, never> = plainToInstance(EditGuildConfig, {
@@ -48,7 +66,12 @@ export class GuildComponent implements OnInit {
 		private readonly route: ActivatedRoute,
 		private readonly guildConfigService: GuildConfigService,
 		private readonly messageService: MessageService
-	) {}
+	) {
+		this.openedCategory = {};
+		this.meta.categories.forEach(({ name }) => {
+			this.openedCategory[name] = false;
+		});
+	}
 
 	public ngOnInit(): void {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -65,10 +88,10 @@ export class GuildComponent implements OnInit {
 			
 			const configCopy = { ...this.guildConfig };
 
-			const inst = plainToInstance(EditGuildConfig, configCopy);
+			const instance = plainToInstance(EditGuildConfig, configCopy);
 
-			this.form = this.formBuilder.rootFormGroup(EditGuildConfig, inst);
-			this.form.object = inst;
+			this.form = this.formBuilder.rootFormGroup(EditGuildConfig, instance);
+			this.form.object = instance;
 		});
 	}
 

@@ -6,6 +6,27 @@
     position: fixed;
     bottom: 4rem;
     right: 4rem;
+    z-index: 99999999999;
+}
+
+.unmarked {
+    list-style-type: none;
+    padding: 0;
+}
+
+.categories {
+    align-items: stretch;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: stretch;
+
+    li {
+        flex: 1;
+    }
+
+    .category {
+        justify-content: space-between;
+    }
 }
 
 .first {

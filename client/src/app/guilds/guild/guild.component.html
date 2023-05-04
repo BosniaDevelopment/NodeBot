@@ -14,30 +14,13 @@
 		<div class="guild">
 			<div class="head">
 				<img [src]="guild.iconUrl" [alt]="guild.name" class="guild-icon" />
-				
+
 				<h2>{{ guild.name }}</h2>
+
+				<span>ID: {{ guild.id }}</span>
 
 				<p-messages [value]="[{ severity: 'warn', detail: notAdminMessage }]" *ngIf="!isBotAdmin" />
 			</div>
-
-			<p-divider />
-
-			<form [formGroup]="form" *ngIf="form?.customValidateErrors | async as errors" novalidate>
-				<div class="form-field" *ngFor="let item of form.controls | keyvalue; let i = index"
-					[ngSwitch]="typeOf(defaultConfig[item.key])">
-					<label [for]="i" class="field-name">
-						{{ formI18n[item.key | never] }}:
-					</label>
-
-					<p-inputSwitch styleClass="form-input" *ngSwitchCase="'boolean'" [formControlName]="item.key"
-						[id]="i" />
-					<p-inputNumber styleClass="form-input" *ngSwitchCase="'number'" placeholder="0"
-						[formControlName]="item.key" [id]="i" />
-
-					<span *ngSwitchDefault>null</span>
-					<p-divider *ngIf="i < (form.controls | keyvalue).length - 1" />
-				</div>
-			</form>
 
 			<p-menubar class="overlay" *ngIf="form.dirty">
 				<ng-template pTemplate="end">
@@ -49,4 +32,62 @@
 			</p-menubar>
 		</div>
 	</p-card>
+
+	<form [formGroup]="form" *ngIf="form?.customValidateErrors | async as errors" novalidate>
+		<ul class="categories unmarked mr-5 ml-5 mt-5 flex">
+			<li *ngFor="let category of meta.categories">
+				<p-card>
+					<div class="flex category">
+						<div class="text">
+							<h3>{{ category.name }}</h3>
+							<p-divider />
+							<p class="description" *ngIf="category.description">
+								{{ category.description }}
+							</p>
+						</div>
+
+						<p-button icon="pi pi-cog" styleClass="p-button-rounded p-button-text"
+							(onClick)="openedCategory[category.name] = true" />
+					</div>
+				</p-card>
+
+				<p-sidebar position="bottom" [(visible)]="openedCategory[category.name]" [style]="{ height: '75vh' }">
+					<ng-template pTemplate="header">
+						<h3>{{ category.name }}</h3>
+					</ng-template>
+					<p class="description" *ngIf="category.description">
+						{{ category.description }}
+					</p>
+					
+					<p-divider />
+
+					<ul class="unmarked mr-4">
+						<li *ngFor="let optionName of category.options; let i = index">
+							<h4>{{ meta.options[optionName].name }}</h4>
+
+							<div class="field" [ngSwitch]="meta.options[optionName].type">
+								<p-inputNumber [formControlName]="optionName" *ngSwitchCase="'number'" />
+								<p-inputSwitch [formControlName]="optionName" *ngSwitchCase="'boolean'" />
+								<p-dropdown [formControlName]="optionName" *ngSwitchCase="'enum-string'"
+									[options]="suggestions(optionName)">
+									<ng-template pTemplate="selectedItem">
+										{{ meta.options[optionName]['acceptedValues' | never][form.controls[optionName].value] }}
+									</ng-template>
+									<ng-template let-item pTemplate="item">
+										{{ meta.options[optionName]['acceptedValues' | never][item] }}
+									</ng-template>
+								</p-dropdown>
+
+								<span *ngSwitchDefault>
+									Unexpected type: {{ meta.options[optionName].type }}
+								</span>
+							</div>
+
+							<p-divider *ngIf="i < category.options.length - 1" />
+						</li>
+					</ul>
+				</p-sidebar>
+			</li>
+		</ul>
+	</form>
 </ng-template>

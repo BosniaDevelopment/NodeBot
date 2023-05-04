@@ -18,6 +18,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { MessagesModule } from 'primeng/messages';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SidebarModule } from 'primeng/sidebar';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 export const primengModules = [
 	TableModule,
@@ -39,5 +41,7 @@ export const primengModules = [
 	CheckboxModule,
 	InputSwitchModule,
 	MessagesModule,
-	ProgressSpinnerModule
+	ProgressSpinnerModule,
+	SidebarModule,
+	AutoCompleteModule
 ];
