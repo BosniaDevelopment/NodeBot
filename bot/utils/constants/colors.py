@@ -1,4 +1,4 @@
-from discord import Color
+from hikari import Color
 
 
 DEFAULT_EMBED_COLOR = Color.from_rgb(0, 0, 0)

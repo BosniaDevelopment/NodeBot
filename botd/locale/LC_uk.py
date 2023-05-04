@@ -1,8 +1,8 @@
-from bot.locale.locale import LocaleModel
-from bot.locale.common_strings import CommonStrings
+from botd.locale.locale import LocaleModel
+from botd.locale.common_strings import CommonStrings
 
 
-LC_ru = LocaleModel(
+LC_uk = LocaleModel(
     on_guild_join_message=(
         f'NodeBot тут! Ви можете почати його налаштування відвідавши '
         f'[панель]({CommonStrings.nodebot_panel_url})'

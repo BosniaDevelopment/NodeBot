@@ -1,5 +1,5 @@
-from bot.common import db
-from bot.modules.db.request_status import RequestStatus
+from botd.common import db
+from botd.modules.db.request_status import RequestStatus
 import prisma
 from prisma.models import Server
 from prisma.types import ServerCreateInput
@@ -21,7 +21,7 @@ class ServerService:
         except prisma.errors.UniqueViolationError:
             status = RequestStatus.exists
         except Exception as e:
-            from bot.modules.exc import PrettyException
+            from botd.modules.exc import PrettyException
             print(PrettyException(e).pretty_exception)
             status = RequestStatus.error
         finally:

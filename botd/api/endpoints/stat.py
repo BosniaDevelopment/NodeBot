@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.get("/")
 async def stat_root() -> StatsResponse:
-    from bot.common import NodeBot
+    from botd.common import NodeBot
 
     return StatsResponse(
         tag=f'{NodeBot.user.name}#{NodeBot.user.discriminator}',

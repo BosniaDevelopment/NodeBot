@@ -9,7 +9,7 @@ class OnStartCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        from bot.config import NODEBOT_API_LISTEN_SYMBOL
+        from botd.config import NODEBOT_API_LISTEN_SYMBOL
         await self.bot.change_presence(
             activity=discord.Activity(type=discord.ActivityType.listening, name="xMml")
         )

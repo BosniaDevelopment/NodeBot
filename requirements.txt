@@ -1,4 +1,6 @@
-py-cord
+hikari
+hikari[speedups]
+hikari-crescent
 prisma
 rich
 dyndesign

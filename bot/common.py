@@ -1,6 +1,4 @@
-from .disps.injector import inject
-from .modules.db.db import db
+from .modules.config import NODEBOT_REDIRECT_URI, NODEBOT_SERVER_PORT
 
-NodeBot = inject()().bot
 
-__all__ = ['NodeBot', 'db']
+PANEL_URL = NODEBOT_REDIRECT_URI.format(port=NODEBOT_SERVER_PORT)

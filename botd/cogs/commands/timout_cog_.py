@@ -9,12 +9,12 @@ from discord import Cog, Bot, Member, Embed, ApplicationContext
 
 from datetime import timedelta
 from typing import Final
-from bot.utils.constants.colors import DEFAULT_EMBED_COLOR
-from bot.utils.constants.titles import EMBED_TITLE_TEMPLATE
+from botd.utils.constants.colors import DEFAULT_EMBED_COLOR
+from botd.utils.constants.titles import EMBED_TITLE_TEMPLATE
 
 # EN: timeout
 # RU: тайм-аут
-# UA: ""
+# UA:
 LC_COG_COMMAND_NAME: Final[str] = ""
 
 # EN: The command to timeout member

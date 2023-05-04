@@ -1,15 +1,26 @@
+from crescent import LocaleBuilder
+
 from dataclasses import dataclass
-from discord import Embed
-from typing import TypeVar
-
-
-T = TypeVar("T", str, Embed, dict)
 
 
 @dataclass
-class LocaleModel(object):
-    def get(self, name):
-        return self.__getattribute__(name)
+class LocaleString(LocaleBuilder):
+    _fallback: str
 
-    on_guild_join_message: T
-    on_old_guild_join_message: T
+    en_GB: str
+    en_US: str
+
+    ru: str
+    uk: str
+
+    def build(self) -> dict[str, str]:
+        return {
+            "en-GB": self.en_GB,
+            "en-US": self.en_US,
+            "ru": self.ru,
+            "uk": self.uk
+        }
+
+    @property
+    def fallback(self) -> str:
+        return self._fallback

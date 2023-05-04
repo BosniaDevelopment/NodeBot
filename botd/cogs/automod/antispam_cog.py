@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
-from bot.locale import LocaledEmbed
-from bot.modules.db.request_status import RequestStatus
-from bot.modules.db.servers.servers_service import ServerService
+from botd.locale import LocaledEmbed
+from botd.modules.db.request_status import RequestStatus
+from botd.modules.db.servers.servers_service import ServerService
 
 
 class AntiSpamCog(commands.Cog):
