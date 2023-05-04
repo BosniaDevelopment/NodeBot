@@ -1,12 +1,5 @@
-from .bot import bot
-from .utils.constants.presences import activity
-from .utils.constants.presences import status
-
-
-bot.run(
-    activity=activity,
-    status=status,
-    asyncio_debug=True,
-    propagate_interrupts=True,
-    coroutine_tracking_depth=20,
-)
+if __name__ == '__main__':
+    import uvicorn
+    from bot.api import server
+    from .config import NODEBOT_API_PORT
+    uvicorn.run(app=server.app, host='0.0.0.0', port=NODEBOT_API_PORT)

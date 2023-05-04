@@ -1,5 +1,5 @@
-from botd.locale.locale import LocaleModel
-from botd.locale.common_strings import CommonStrings
+from bot.locale.locale import LocaleModel
+from bot.locale.common_strings import CommonStrings
 
 
 LC_en_US = LocaleModel(

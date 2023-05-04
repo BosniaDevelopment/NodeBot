@@ -2,6 +2,7 @@ from .locale import LocaleModel
 from .locale import Locale
 from .common import PANEL_URL
 
+
 ON_GUILD_JOIN_MESSAGE = (
     "NodeBot is here! You can start setting it"
     f" up by visiting the [panel]({PANEL_URL})"
