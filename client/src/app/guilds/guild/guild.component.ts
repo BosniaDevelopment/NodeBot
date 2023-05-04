@@ -50,10 +50,7 @@ export class GuildComponent implements OnInit {
 			return [];
 		}
 
-		const keys = Object.keys(option.acceptedValues);
-		const values = Object.values(option.acceptedValues);
-
-		return keys;
+		return Object.keys(option.acceptedValues);
 	}
 
 	public readonly defaultConfig: Record<string, never> = plainToInstance(EditGuildConfig, {
