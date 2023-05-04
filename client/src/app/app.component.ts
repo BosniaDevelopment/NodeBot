@@ -3,14 +3,7 @@ import { UserService } from './core/services';
 
 @Component({
 	selector: 'app-root',
-	template: `
-		<app-header />
-		<main [style]="{ 'margin-top': '20vh' }">
-			<router-outlet />
-		</main>
-		<p-messages />
-	`,
-	styles: [],
+	templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
 	public title = 'NodeBot dashboard';
