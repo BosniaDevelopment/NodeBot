@@ -1,4 +1,4 @@
-from bot.commons import config
+from bot.common import config
 
 
 class CommonStrings:

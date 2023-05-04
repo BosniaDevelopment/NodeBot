@@ -19,10 +19,9 @@ class ServerService:
                 id=str(self.id),
             ))
             status = RequestStatus.success
+        except prisma.errors.UniqueViolationError:
+            status = RequestStatus.exists
         except Exception as e:
-            if e.__class__ is prisma.errors.UniqueViolationError:
-                ...
-
             from bot.modules.exceptions import PrettyException
             print(PrettyException(e).pretty_exception)
             status = RequestStatus.error
