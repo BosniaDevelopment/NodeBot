@@ -1,4 +1,4 @@
-from bot.commons.common import db
+from bot.commons.common import prisma
 from bot.modules.db.request_status import RequestStatus
 import prisma
 from prisma.models import Server
@@ -13,7 +13,7 @@ class ServerService:
     async def create(self):
         status = RequestStatus.not_finished
         try:
-            await db.connect()
+            await prisma.connect()
             await Server.prisma().create(data=ServerCreateInput(
                 id=str(self.id),
             ))
@@ -25,5 +25,5 @@ class ServerService:
             print(PrettyException(e).pretty_exception)
             status = RequestStatus.error
         finally:
-            await db.disconnect()
+            await prisma.disconnect()
             return status

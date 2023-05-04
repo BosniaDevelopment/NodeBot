@@ -1,8 +1,8 @@
 from bot.commons.bot import NodeBotBuilder
-from bot.modules.db.db import db
+from bot.modules.db.db import prisma
 
 
-__all__ = ['NodeBot', 'db']
+__all__ = ['NodeBot', 'prisma']
 
 
 NodeBot = NodeBotBuilder()

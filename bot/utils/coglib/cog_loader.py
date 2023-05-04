@@ -5,7 +5,7 @@ from rich import print
 
 class CogLoader:
     @staticmethod
-    def load_cogs(bot: discord.Bot):
+    def load_cogs(bot: discord.Bot, cogs_module: str = 'bot.cogs'):
         loaded = 0
 
         path = os.path.join(os.getcwd(), 'bot')
@@ -20,7 +20,7 @@ class CogLoader:
                     start=os.path.join(path, "cogs")
                 ).replace("/", ".").replace("\\", ".")
 
-                bot.load_extension(f'bot.cogs.{relative_path[:-3]}')
+                bot.load_extension(f'{cogs_module}.{relative_path[:-3]}')
                 loaded += 1
 
         print(f'Loaded {loaded} cogs')
