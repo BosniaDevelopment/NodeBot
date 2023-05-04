@@ -18,6 +18,11 @@ body {
     width: 100vw;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 .p-card {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
