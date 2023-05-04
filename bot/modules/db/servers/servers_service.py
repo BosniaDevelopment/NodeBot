@@ -1,4 +1,4 @@
-from bot.common import db
+from bot.commons.common import db
 from bot.modules.db.request_status import RequestStatus
 import prisma
 from prisma.models import Server

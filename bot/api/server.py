@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from .routers import router
-from bot import main
+from ..commons import loaders
 
-
-app = FastAPI(on_startup=[main.main])
+app = FastAPI(on_startup=[loaders.start_bot])
 app.include_router(router)

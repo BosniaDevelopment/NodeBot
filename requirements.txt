@@ -1,7 +1,6 @@
 py-cord
-prisma
 rich
-dyndesign
+prisma
 sqlitedict
 fastapi
 uvicorn
