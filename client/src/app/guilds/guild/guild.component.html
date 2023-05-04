@@ -35,8 +35,8 @@
 
 	<form [formGroup]="form" *ngIf="form?.customValidateErrors | async as errors" novalidate>
 		<ul class="categories unmarked mr-5 ml-5 mt-5 flex">
-			<li *ngFor="let category of meta.categories">
-				<p-card>
+			<li *ngFor="let category of meta.categories" (click)="openedCategory[category.name] = true">
+				<p-card styleClass="category-card">
 					<div class="flex category">
 						<div class="text">
 							<h3>{{ category.name }}</h3>
@@ -45,9 +45,6 @@
 								{{ category.description }}
 							</p>
 						</div>
-
-						<p-button icon="pi pi-cog" styleClass="p-button-rounded p-button-text"
-							(onClick)="openedCategory[category.name] = true" />
 					</div>
 				</p-card>
 

@@ -25,7 +25,8 @@
     }
 
     .category {
-        justify-content: space-between;
+        justify-content: center;
+        text-align: center;
     }
 }
 
@@ -51,4 +52,15 @@
 
 .guild-icon {
     border-radius: 17%;
+}
+
+:host ::ng-deep {
+    .p-card.category-card {
+        cursor: pointer;
+
+        &:hover {
+            transition: .1s;
+            transform: translateY(-6px);
+        }
+    }
 }
