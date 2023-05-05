@@ -1,7 +1,9 @@
-<app-header />
-
-<main [style]="{ 'margin-top': '20vh', 'min-height': '60vh' }">
-    <router-outlet />
-</main>
-
-<app-footer />
+<app-global-loading>
+    <app-header />
+    
+    <main [style]="{ 'margin-top': '20vh', 'min-height': '60vh' }">
+        <router-outlet />
+    </main>
+    
+    <app-footer />
+</app-global-loading>

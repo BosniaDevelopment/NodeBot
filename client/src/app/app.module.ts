@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { FooterComponent } from './footer/footer.component';
+import { GlobalLoadingModule } from './core/global-loading/global-loading.module';
 
 @NgModule({
 	declarations: [
@@ -32,6 +33,7 @@ import { FooterComponent } from './footer/footer.component';
 		AppRoutingModule,
 		CoreModule,
 		FormsModule,
+		GlobalLoadingModule,
 		ReactiveFormsModule,
 		...primengModules,
 	],

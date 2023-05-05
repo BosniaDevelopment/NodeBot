@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import type { Server } from '@prisma/client';
 import { firstValueFrom as promisify } from 'rxjs';
 import { AccessTokenService, ApiService, GuildConfigService } from '../services';
+import { GlobalLoadingService } from '../global-loading/global-loading.service';
 
 type Res = {
 	config: Server;
@@ -17,6 +18,9 @@ export const GuildConfigResolver: ResolveFn<Res> = async (route: ActivatedRouteS
 	const guildConfigService = inject(GuildConfigService);
 	const api = inject(ApiService);
 	const accessTokenService = inject(AccessTokenService);
+	const globalLoadingService = inject(GlobalLoadingService);
+
+	globalLoadingService.start();
 
 	const [
 		config, publicInfo
@@ -28,6 +32,8 @@ export const GuildConfigResolver: ResolveFn<Res> = async (route: ActivatedRouteS
 			}
 		}))
 	]);
+
+	globalLoadingService.stop();
 
 	return { config, publicInfo };
 };
