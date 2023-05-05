@@ -1,9 +1,8 @@
 .global-loading-wrapper {
-    position: relative;
-    
     .loading {
         filter: blur(5px);
         pointer-events: none;
+        overflow: hidden;
     }
 }
 

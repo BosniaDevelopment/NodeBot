@@ -69,9 +69,22 @@
 	filter: drop-shadow(5px 5px 10px black);
 }
 
+:host ::ng-deep {
+	.p-card.card {
+		position: absolute;
+    	top: 50%;
+	}
+}
+
 @media screen and (min-width: 900px) {
+	:host ::ng-deep .card {
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
 	.slogan {
-		max-width: 50vw;
+		width: 50vw;
+		padding: 0 2rem;
 	}
 
 	.bot-avatar {
@@ -80,8 +93,10 @@
 }
 
 @media screen and (max-width: 900px) {
-	.card {
-		margin: 0.75vw;
+	:host ::ng-deep .card {
+		left: 0.75vw;
+		right: 0.75vw;
+		transform: translateY(-50%);
 	}
 	
 	.bot-avatar {

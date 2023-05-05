@@ -1,8 +1,8 @@
 <div class="global-loading-wrapper">
-    <p-card styleClass="global-loading" *ngIf="loading">
-        <p-progressSpinner />
-    </p-card>
     <div [class.loading]="loading">
         <ng-content></ng-content>
     </div>
+    <p-card styleClass="global-loading" *ngIf="loading">
+        <p-progressSpinner />
+    </p-card>
 </div>
