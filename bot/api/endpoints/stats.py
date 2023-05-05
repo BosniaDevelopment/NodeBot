@@ -5,8 +5,8 @@ from ..models.stat import StatsResponse
 router = APIRouter()
 
 
-@router.get("/")
-async def stat_root() -> StatsResponse:
+@router.get("")
+async def stats_root() -> StatsResponse:
     from bot import NodeBot
 
     return StatsResponse(
