@@ -7,11 +7,11 @@ router = APIRouter()
 
 @router.get("/")
 async def stat_root() -> StatsResponse:
-    from bot.common.common import NodeBotBuilder
+    from bot import NodeBot
 
     return StatsResponse(
-        tag=f'{NodeBotBuilder.user.name}#{NodeBotBuilder.user.discriminator}',
-        id=str(NodeBotBuilder.user.id),
-        servers=len(NodeBotBuilder.guilds),
-        users=len(NodeBotBuilder.users)
+        tag=f'{NodeBot.user.name}#{NodeBot.user.discriminator}',
+        id=str(NodeBot.user.id),
+        servers=len(NodeBot.guilds),
+        users=len(NodeBot.users)
     )

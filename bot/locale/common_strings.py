@@ -2,4 +2,4 @@ from bot.common import config
 
 
 class CommonStrings:
-    nodebot_panel_url = f'{config.NBOT_REDIRECT_URI.format(PORT=config.NBOT_SERVER_PORT)}'
+    nodebot_panel_url = f'{config.NODEBOT_PANEL_ENDPOINT.format(PORT=config.NODEBOT_SERVER_PORT)}'

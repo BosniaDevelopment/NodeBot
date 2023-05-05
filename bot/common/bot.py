@@ -12,12 +12,13 @@ class ExtensionsManager:
 
     def load(self, path: str, module: str) -> None:
         for item in listdir(path):
+            print(item)
             absolute = f"{path}\\{item}"
             submodule = f"{module}.{item}"
 
             if isdir(absolute):
                 self.load(path, submodule)
-            else:
+            elif submodule.endswith('_cog.py'):
                 extension = submodule[:-3]
                 self.bot.load_extension(extension)
 
@@ -29,8 +30,8 @@ class SubBot(Bot):
         self._extensions_manager = ExtensionsManager(self)
 
     def run(self, token: str, *args: Any, **kwargs: Any) -> None:
-        self._extensions_manager.load(".\\bot\\extensions")
+        self._extensions_manager.load(".\\bot\\extensions", "bot.extensions")
         return super().run(token, *args, **kwargs)
 
 
-NodeBot = SubBot(Intents.all)
+NodeBot = SubBot(Intents.all())
