@@ -1,14 +1,15 @@
 async def start_bot():
     from rich import print
+    import asyncio
 
     print('[italic]Preparing bot[/]')
 
-    from .bot import NodeBot
+    from bot.common.bot import NodeBot
     from bot.common.config import TOKEN
 
-    print('[bold]Running bot...[/]')
+    print('[bold]Starting bot...[/]')
 
-    await NodeBot.run(TOKEN)
+    asyncio.run_coroutine_threadsafe(NodeBot.start(TOKEN), asyncio.get_running_loop())
 
 
 def start_server():

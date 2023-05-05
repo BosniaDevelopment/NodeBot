@@ -1,37 +1,18 @@
-from discord import Bot
-from discord import Intents
+import discord
+from discord.ext import commands
 
-from os import listdir
-from os.path import isdir
-from typing import Any
+from bot.utils.extensionslib import ExtensionsManager
 
 
-class ExtensionsManager:
-    def __init__(self, bot: Bot) -> None:
-        self.bot = bot
-
-    def load(self, path: str, module: str) -> None:
-        for item in listdir(path):
-            print(item)
-            absolute = f"{path}\\{item}"
-            submodule = f"{module}.{item}"
-
-            if isdir(absolute):
-                self.load(path, submodule)
-            elif submodule.endswith('_cog.py'):
-                extension = submodule[:-3]
-                self.bot.load_extension(extension)
-
-
-class SubBot(Bot):
-    def __init__(self, intents: Intents, *args, **kwargs):
+class ExtendedBot(commands.Bot):
+    def __init__(self, intents: discord.Intents, *args, **kwargs):
         super().__init__(intents=intents, *args, **kwargs)
 
         self._extensions_manager = ExtensionsManager(self)
 
-    def run(self, token: str, *args: Any, **kwargs: Any) -> None:
-        self._extensions_manager.load(".\\bot\\extensions", "bot.extensions")
-        return super().run(token, *args, **kwargs)
+    async def start(self, token: str, *, reconnect: bool = True) -> None:
+        self._extensions_manager.load()
+        await super().start(token, reconnect=reconnect)
 
 
-NodeBot = SubBot(Intents.all())
+NodeBot = ExtendedBot(discord.Intents.all())

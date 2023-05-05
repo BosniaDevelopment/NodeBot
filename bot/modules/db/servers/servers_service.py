@@ -1,4 +1,4 @@
-from bot import db
+from bot.modules.db import db
 from bot.modules.db.request_status import RequestStatus
 
 import prisma
