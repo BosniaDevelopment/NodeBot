@@ -12,7 +12,7 @@ export const AuthGuard: CanActivateFn = (_, { url: next }) => {
 			if (typeof user === 'object') return true;
 
 			if (user === 'fetching')
-				router.navigate([ 'loading' ], { queryParams: { next } });
+				router.navigate([ 'authorizing' ], { queryParams: { next } });
 			else if (user === 'unauthorized')
 				location.href = '/auth';
 

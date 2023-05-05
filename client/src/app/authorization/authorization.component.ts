@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-	selector: 'app-loading',
-	templateUrl: './loading.component.html',
-	styleUrls: [ './loading.component.scss' ],
+	selector: 'app-authorization',
+	templateUrl: './authorization.component.html',
+	styleUrls: [ './authorization.component.scss' ],
 })
-export class LoadingComponent implements OnInit {
+export class AuthorizationComponent implements OnInit {
 	public next!: string;
 
 	public constructor(

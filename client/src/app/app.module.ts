@@ -12,7 +12,7 @@ import { LocaleSwitcherComponent } from './locale-switcher/locale-switcher.compo
 import { primengModules } from './primeng-modules';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoadingComponent } from './loading/loading.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -22,8 +22,8 @@ import { FooterComponent } from './footer/footer.component';
 		AuthCallbackComponent,
 		LocaleSwitcherComponent,
 		HomeComponent,
-		LoadingComponent,
-  FooterComponent,
+		AuthorizationComponent,
+		FooterComponent,
 	],
 	imports: [
 		BrowserModule,
