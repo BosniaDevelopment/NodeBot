@@ -18,11 +18,11 @@ export class ProdBotService extends BotService implements OnModuleInit {
 	}
 
 	public async getBotStats(): Promise<IBotStats> {
-		return await axios.get(`${this.endpoint}/stat/`).then(({ data }) => data);
+		return await axios.get(`${this.endpoint}/stats`).then(({ data }) => data);
 	}
 
 	public async getGuildInfo(guildId: string): Promise<IGuildInfo> {
-		return await axios.get(`${this.endpoint}/guilds/${guildId}/`).then(({ data }) => data);
+		return await axios.get(`${this.endpoint}/guilds/${guildId}`).then(({ data }) => data);
 	}
 
 	public async onModuleInit(): Promise<void> {
