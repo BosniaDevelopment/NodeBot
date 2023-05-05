@@ -1,15 +1,36 @@
-import discord
-from discord.ext import commands
+from discord import Bot
+from discord import Intents
 
-from bot.utils.coglib import CogLoader
+from os import listdir
+from os.path import isdir
+from typing import Any
 
 
-class NodeBotBuilder(commands.Bot):
-    def __init__(self, command_prefix="/", intents=discord.Intents.all(), help_command=None):
-        super().__init__(
-            command_prefix=command_prefix,
-            intents=intents,
-            help_command=help_command
-        )
+class ExtensionsManager:
+    def __init__(self, bot: Bot) -> None:
+        self.bot = bot
 
-        CogLoader.load_cogs(self)
+    def load(self, path: str, module: str) -> None:
+        for item in listdir(path):
+            absolute = f"{path}\\{item}"
+            submodule = f"{module}.{item}"
+
+            if isdir(absolute):
+                self.load(path, submodule)
+            else:
+                extension = submodule[:-3]
+                self.bot.load_extension(extension)
+
+
+class SubBot(Bot):
+    def __init__(self, intents: Intents, *args, **kwargs):
+        super().__init__(intents=intents, *args, **kwargs)
+
+        self._extensions_manager = ExtensionsManager(self)
+
+    def run(self, token: str, *args: Any, **kwargs: Any) -> None:
+        self._extensions_manager.load(".\\bot\\extensions")
+        return super().run(token, *args, **kwargs)
+
+
+NodeBot = SubBot(Intents.all)

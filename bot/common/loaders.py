@@ -3,17 +3,18 @@ async def start_bot():
 
     print('[italic]Preparing bot[/]')
 
-    from .common import NodeBot
-    from .config import TOKEN
+    from .bot import NodeBot
+    from ..modules.config import TOKEN
 
-    print('[bold]Starting bot...[/]')
+    print('[bold]Running bot...[/]')
 
-    await NodeBot.start(TOKEN)
+    await NodeBot.run(TOKEN)
 
 
 def start_server():
-    import uvicorn
+    from uvicorn import run
 
     from bot.api import server
-    from .config import NODEBOT_API_PORT
-    uvicorn.run(app=server.app, host='0.0.0.0', port=NODEBOT_API_PORT)
+    from ..modules.config import NODEBOT_API_PORT
+
+    run(app=server.app, host='0.0.0.0', port=NODEBOT_API_PORT)
