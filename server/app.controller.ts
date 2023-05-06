@@ -2,8 +2,10 @@
 
 import * as path from 'node:path';
 import * as fs from 'node:fs/promises';
-import { Controller, Get, Next, Redirect, Req, Res } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { createReadStream } from 'node:fs';
+import { lookup as lookupMime } from 'mime-types';
+import type { FastifyReply, FastifyRequest } from 'fastify';
+import { Controller, Get, HttpException, HttpStatus, Next, Redirect, Req, Res } from '@nestjs/common';
 import { locales } from '@/locales';
 import { Locale } from '@/core/decorators/locale.decorator';
 
@@ -18,7 +20,7 @@ export class AppController {
 	@Get('/')
 	main(
 		@Locale() locale: string,
-		@Res() res: Response
+		@Res() res: FastifyReply
 	) {
 		res.redirect(`/${locale}`);
 	}
@@ -27,14 +29,14 @@ export class AppController {
 	@Redirect('/auth/invite')
 	invite() {}
 
-	@Get('**')
+	@Get('*')
 	async serveStatic(
-		@Req() req: Request,
-		@Res() res: Response,
+		@Req() req: FastifyRequest,
+		@Res() res: FastifyReply,
 		@Next() next: VoidFunction,
 		@Locale() preferredLocale: string,
 	): Promise<void> {
-		let [locale, ...rest] = req.originalUrl.split('/').filter(Boolean);
+		let [locale, ...rest] = req.url.split('/').filter(Boolean);
 
 		if (locale === 'api' || locale === 'auth') return void next();
 
@@ -47,6 +49,16 @@ export class AppController {
 
 		await fs.stat(this.getStaticFilePath(locale, rest)).catch(() => (rest = ['index.html']));
 
-		res.sendFile(this.getStaticFilePath(locale, rest));
+		const filepath = this.getStaticFilePath(locale, rest);
+
+		const type = lookupMime(filepath);
+
+		if (!type) {
+			throw new HttpException({
+				message: `Unknown file type "${type}" of file ${path.relative(process.cwd(), filepath)}`,
+			}, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		res.type(type).send(createReadStream(filepath));
 	}
 }

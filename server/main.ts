@@ -1,7 +1,7 @@
 import { watch } from 'chokidar';
 import { ConsoleLogger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 import { join, relative, sep } from 'path';
 import { locales } from './locales';
@@ -18,11 +18,17 @@ async function main() {
 		logger.error(error.stack ?? error.message);
 	});
 
-	const app = await NestFactory.create<NestExpressApplication>(AppModule);
+	const app = await NestFactory.create<NestFastifyApplication>(
+		AppModule,
+		new FastifyAdapter()
+	);
 
 	app.useGlobalPipes(new ValidationPipe);
 
 	await app.listen(process.env.PORT, '0.0.0.0');
+
+	if (locales.length > 0)
+		logger.log(`Supported locales: ${locales.join(', ')}`);
 
 	if (process.env.NODE_ENV === 'development') {
 		const watchPath = join(__dirname, '..', 'client');

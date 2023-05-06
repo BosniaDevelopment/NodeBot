@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { FastifyReply } from 'fastify';
 import { AuthService } from './auth.service';
 import { WithCode } from '@/dto/with-code';
 
@@ -8,12 +8,12 @@ export class AuthController {
 	public constructor(private readonly authService: AuthService) {}
 
 	@Get()
-	index(@Res() res: Response) {
+	index(@Res() res: FastifyReply) {
 		res.redirect(this.authService.uri);
 	}
 
 	@Get('invite')
-	inviteBot(@Res() res: Response) {
+	inviteBot(@Res() res: FastifyReply) {
 		res.redirect(this.authService.addBotUri);
 	}
 
