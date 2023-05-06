@@ -1,7 +1,8 @@
 {
   "locale": "en",
   "translations": {
-    "server-without-bot": " NodeBot is not member of {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, so you can't configure this server. ",
+    "loading": "Logging in...",
+    "server-without-bot": " NodeBot is not member of {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, so you can't configure this server. If you added the bot earlier, wait a little and update this page. ",
     "return-to-servers-list": "Return to servers list",
     "add-bot": "Add the bot",
     "cancel": "Cancel",
@@ -23,7 +24,6 @@
     "warnings": "Warnings",
     "logout": "Log out",
     "login": "Log in",
-    "slogan": " Most minimalistic, powerful, customizable and scalable AI moderator and companion for admins with open source code ",
-    "loading": "Logging in..."
+    "slogan": " Most minimalistic, powerful, customizable and scalable AI moderator and companion for admins with open source code "
   }
 }

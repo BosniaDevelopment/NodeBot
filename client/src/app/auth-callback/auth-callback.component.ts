@@ -19,7 +19,13 @@ export class AuthCallbackComponent implements OnInit {
 	}
 
 	public async ngOnInit(): Promise<void> {
-		const code = this.route.snapshot.queryParams['code'];
+		const queryParams = this.route.snapshot.queryParams;
+		const { code, error, guild_id: guildId } = queryParams;
+
+		if (error) {
+			this.router.navigate([ '/' ]);
+			return;
+		}
 
 		if (!code || typeof code !== 'string')
 			return this.reAuth();
@@ -31,6 +37,9 @@ export class AuthCallbackComponent implements OnInit {
 			return;
 		}
 
-		this.router.navigate([ '/guilds' ]);
+		if (guildId)
+			this.router.navigate([ `/guilds/${guildId}` ]);
+		else
+			this.router.navigate([ '/guilds' ]);
 	}
 }

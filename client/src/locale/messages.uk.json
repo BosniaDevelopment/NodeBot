@@ -1,7 +1,7 @@
 {
 	"locale": "uk",
 	"translations": {
-		"server-without-bot": "NodeBot не є учасником {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, тому ви не можете налаштувати цей сервер.",
+		"server-without-bot": "NodeBot не є учасником {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, тому ви не можете налаштувати цей сервер. Якщо ви вже додали бота, трохи зачекайте та оновіть сторінку.",
 		"cancel": "Відкинути зміни",
 		"return-to-servers-list": "Повернутися до списку серверів",
 		"submit": "Зберегти",

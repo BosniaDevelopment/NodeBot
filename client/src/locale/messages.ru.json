@@ -1,7 +1,7 @@
 {
 	"locale": "ru",
 	"translations": {
-		"server-without-bot": "NodeBot не является участником {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, поэтому Вы не можете конфигурировать этот сервер.",
+		"server-without-bot": "NodeBot не является участником {$START_BOLD_TEXT}{$INTERPOLATION}{$CLOSE_BOLD_TEXT}, поэтому Вы не можете конфигурировать этот сервер. Если вы уже добавили бота, подождите немного и обновите страницу.",
 		"cancel": "Отменить",
 		"return-to-servers-list": "Вернуться к списку серверов",
 		"submit": "Подтвердить",
