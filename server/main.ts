@@ -31,7 +31,7 @@ async function main() {
 		logger.log(`Supported locales: ${locales.join(', ')}`);
 
 	if (process.env.NODE_ENV === 'development') {
-		const watchPath = join(__dirname, '..', 'client');
+		const watchPath = join(__dirname, '..', 'dist', 'client');
 
 		logger.log(`Working directory: ${process.cwd()}`);
 		logger.log(`Watching: ${relative(process.cwd(), watchPath)}`);

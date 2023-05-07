@@ -24,4 +24,7 @@
 			"@common/*": [ "./common/*" ]
 		}
 	},
+	"ts-node": {
+		"require": ["tsconfig-paths/register"],
+	}
 }

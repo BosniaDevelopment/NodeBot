@@ -7,6 +7,6 @@
     "sourceRoot": "src",
     "entryFile": "server/main",
     "compilerOptions": {
-        "deleteOutDir": true
+        "deleteOutDir": false
     }
 }

@@ -11,18 +11,10 @@ import { Locale } from '@/core/decorators/locale.decorator';
 
 @Controller()
 export class AppController {
-	public static readonly staticRoot: string = path.join(__dirname, '..', 'client');
+	public static readonly staticRoot: string = path.join(__dirname, '..', 'dist', 'client');
 
 	public getStaticFilePath(locale: string, rest: string[]): string {
 		return path.join(AppController.staticRoot, locale, rest.join('/').replace(/\?.$/g, ''));
-	}
-
-	@Get('/')
-	main(
-		@Locale() locale: string,
-		@Res() res: FastifyReply
-	) {
-		res.redirect(`/${locale}`);
 	}
 
 	@Get('/invite')
@@ -36,7 +28,7 @@ export class AppController {
 		@Next() next: VoidFunction,
 		@Locale() preferredLocale: string,
 	): Promise<void> {
-		let [locale, ...rest] = req.url.split('/').filter(Boolean);
+		let [locale = preferredLocale, ...rest] = req.url.split('/').filter(Boolean);
 
 		if (locale === 'api' || locale === 'auth') return void next();
 
