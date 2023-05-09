@@ -4,9 +4,10 @@
 **/package-lock.json
 .mongo-local
 
-# compiled output
+# compiled output and temporary files
 /dist
 /node_modules
+/target
 
 # Logs
 logs
