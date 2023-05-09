@@ -1,4 +1,5 @@
-from discord import Embed
+from discord import Embed, Guild
+
 from .locale import LocaleModel
 from .LC_en_US import LC_en_US
 from .LC_ru import LC_ru
@@ -13,56 +14,65 @@ class Locales:
     uk = LC_uk
 
 
-class Localed(LocaleModel):
+class Localed:
     def __init__(self, locale: str):
         self.locale = locale.replace('-', '_')
 
-    def __getattribute__(self, item):
-        try:
-            return Locales().__getattribute__(object.__getattribute__(self, 'locale'))().get(item)
-        except AttributeError:
-            return Locales().__getattribute__('en_US')().get(item)
+    def get_locale(self) -> LocaleModel:
+        return getattr(Locales(), self.locale)
 
 
 class LocaledEmbed(LocaleModel):
-    def __init__(self, guild_default_locale: str):
-        self.locale = get_locale(guild_default_locale)
+    def __init__(self, locale: str):
+        self.locale = locale
 
     def __getattribute__(self, item) -> Embed:
-        try:
-            text = Locales().__getattribute__(object.__getattribute__(self, 'locale'))().get(item)
-        except AttributeError:
-            text = Locales().__getattribute__('en_US')().get(item)
-        return Embed(description=text)
+        return Embed(description=Localed(object.__getattribute__(self, 'locale')).get_locale().get(item))
 
 
 class LocaledOptionName(LocaleModel):
+    def __init__(self):
+        pass
+
     def __getattribute__(self, item) -> dict:
         return {
             f'name_localizations': dict(
                 map(
                     lambda i, j: (i, j),
                     [item.replace('_', '-') for item in list(Locales.ALL)],
-                    [Locales().__getattribute__(loc)().get(item) for loc in list(Locales.ALL)]
+                    [getattr(Locales(), loc).get(item) for loc in list(Locales.ALL)]
                 )
             )
         }
 
 
 class LocaledOptionDescription(LocaleModel):
+    def __init__(self):
+        pass
+
     def __getattribute__(self, item) -> dict:
         return {
-            'description': Locales().__getattribute__('en_US')().get(item),
+            'description': Locales.en_US.get(item),
             f'description_localizations': dict(
                 map(
                     lambda i, j: (i, j),
                     [item.replace('_', '-') for item in list(Locales.ALL)],
-                    [Locales().__getattribute__(loc)().get(item) for loc in list(Locales.ALL)]
+                    [getattr(Locales(), loc).get(item) for loc in list(Locales.ALL)]
                 )
             )
         }
 
 
-def get_locale(guild_default_locale: str):
-    # Will be implemented in future
-    return guild_default_locale
+async def get_locale(guild: Guild):
+    from prisma.enums import Locale as LocaleEnum
+    from prisma.models import Server
+    from prisma.types import ServerCreateInput
+    from bot.modules.db.servers.servers_service import ServerService
+
+    if config := await ServerService(**ServerCreateInput(id=str(guild.id))).get_config() is Server:
+        if config.locale != LocaleEnum.default:
+            return config.locale
+        else:
+            return guild.preferred_locale
+    else:
+        return guild.preferred_locale

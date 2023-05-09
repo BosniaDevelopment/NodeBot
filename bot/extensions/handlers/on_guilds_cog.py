@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from bot.locale import LocaledEmbed
+from bot.locale import LocaledEmbed, get_locale
 from bot.modules.db.request_status import RequestStatus
 from bot.modules.db.servers.servers_service import ServerService
 
@@ -13,12 +13,12 @@ class OnGuildsCog(commands.Cog):
     async def on_guild_join(self, guild: discord.Guild):
         if (creation_status := await ServerService(id=str(guild.id)).create()) is RequestStatus.exists:
             await guild.system_channel.send(
-                embed=LocaledEmbed(guild.preferred_locale).on_old_guild_join_message
+                embed=LocaledEmbed(await get_locale(guild)).on_old_guild_join_message
             )
         elif creation_status is RequestStatus.success:
             discord.Embed()
             await guild.system_channel.send(
-                embed=LocaledEmbed(guild.preferred_locale).on_guild_join_message
+                embed=LocaledEmbed(await get_locale(guild)).on_guild_join_message
             )
 
 

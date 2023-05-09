@@ -18,4 +18,4 @@ def start_server():
     from bot.api import server
     from bot.common.config import NODEBOT_API_PORT
 
-    run(app=server.app, host='0.0.0.0', port=NODEBOT_API_PORT)
+    run(app=server.app, host='0.0.0.0', port=NODEBOT_API_PORT, loop='asyncio')
