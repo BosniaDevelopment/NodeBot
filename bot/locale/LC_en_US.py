@@ -36,5 +36,10 @@ LC_en_US = LocaleModel(
     days_nom='days',
     days_pos='days',
     weeks_nom='weeks',
-    weeks_pos='weeks'
+    weeks_pos='weeks',
+
+    error='Error',
+    unknown_error='Unknown error',
+    error_bot_does_not_have_enough_rights='Bot doesn\'t have enough rights to do this',
+    error_not_enough_rights='Not enough rights to do this'
 )

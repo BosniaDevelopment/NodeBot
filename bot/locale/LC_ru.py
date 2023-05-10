@@ -36,5 +36,10 @@ LC_ru = LocaleModel(
     days_nom='дни',
     days_pos='дней',
     weeks_nom='недели',
-    weeks_pos='недель'
+    weeks_pos='недель',
+
+    error='Ошибка',
+    unknown_error='Произошла неизвестная ошибка',
+    error_bot_does_not_have_enough_rights='У бота недостаточно прав для выполнения этого действия',
+    error_not_enough_rights='Недостаточно прав для выполнения этого действия'
 )

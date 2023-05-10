@@ -39,3 +39,8 @@ class LocaleModel:
     days_pos: T
     weeks_nom: T
     weeks_pos: T
+
+    error: T
+    unknown_error: T
+    error_bot_does_not_have_enough_rights: T
+    error_not_enough_rights: T

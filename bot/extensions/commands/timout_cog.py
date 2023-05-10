@@ -1,10 +1,11 @@
+import discord.errors
 from discord import command, option
 from discord import Cog, Bot, Member, Embed, ApplicationContext
 
 from datetime import timedelta
 
 from bot.locale import Localed, LocaledOptionName, LocaledOptionDescription, get_locale
-from bot.utils.constants.colors import DEFAULT_EMBED_COLOR
+from bot.utils.constants.colors import DEFAULT_EMBED_COLOR, ERROR_EMBED_COLOR
 from bot.utils.constants.titles import EMBED_TITLE_TEMPLATE
 
 
@@ -46,6 +47,8 @@ class TimeoutCog(Cog):
             weeks: float,
             reason: str
     ) -> None:
+        await ctx.defer()
+
         localed_text = Localed(await get_locale(ctx.guild)).get_locale()
 
         duration = timedelta(
@@ -83,17 +86,33 @@ class TimeoutCog(Cog):
         description += f"\n\n*{localed_text.timeout_command_option_reason_description}*: {reason}"
         description += f"\n*{localed_text.timeout_command_result_embed_text_duration}*: {description_duration}"
 
-        embed = Embed(
-            title=EMBED_TITLE_TEMPLATE.format(
-                emoji="🐷", title=localed_text.timeout_command_result_embed_title
-            ),
-            description=description,
-            color=DEFAULT_EMBED_COLOR
-        )
-
-        # TODO: Error handling
-        await member.timeout_for(duration=duration, reason=reason)
-        await ctx.respond(embed=embed)
+        try:
+            await member.timeout_for(duration=duration, reason=reason)
+            await ctx.respond(embed=Embed(
+                title=EMBED_TITLE_TEMPLATE.format(
+                    emoji="🐷", title=localed_text.timeout_command_result_embed_title
+                ),
+                description=description,
+                color=DEFAULT_EMBED_COLOR
+            ))
+        except discord.errors.Forbidden:
+            await ctx.respond(embed=Embed(
+                title=EMBED_TITLE_TEMPLATE.format(
+                    emoji="💔", title=localed_text.error
+                ),
+                description=localed_text.error_bot_does_not_have_enough_rights,
+                color=ERROR_EMBED_COLOR
+            ))
+        except Exception as e:
+            from bot.modules.exceptions import PrettyException
+            print(PrettyException(e).pretty_exception)
+            await ctx.respond(embed=Embed(
+                title=EMBED_TITLE_TEMPLATE.format(
+                    emoji="💔", title=localed_text.error
+                ),
+                description=localed_text.unknown_error,
+                color=ERROR_EMBED_COLOR
+            ))
 
 
 def setup(bot: Bot):
