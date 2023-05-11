@@ -14,11 +14,6 @@ LC_ru = LocaleModel(
 
     timeout_command_name='таймаут',
     timeout_command_description='Команда для тайм-аута участника',
-    timeout_command_option_member='участник',
-    timeout_command_option_member_description='УЧАСТНИК',
-    timeout_command_option_reason='причина',
-    timeout_command_option_reason_description='ПРИЧИНА',
-    timeout_command_option_reason_default='Без причины',
     timeout_command_result_embed_title='Тайм-аут',
     timeout_command_result_embed_description='Модератор <@{moderator_id}> отправил в тайм-аут участника <@{member_id}>',
     timeout_command_result_embed_text_duration='Продолжительность',
@@ -37,6 +32,17 @@ LC_ru = LocaleModel(
     days_pos='дней',
     weeks_nom='недели',
     weeks_pos='недель',
+
+    command_common_option_member='участник',
+    command_common_option_member_description='Участник, к которому применить действие',
+    command_common_option_reason='причина',
+    command_common_option_reason_description='Причина применения',
+    command_common_option_reason_default='Без причины',
+
+    kick_command_name='выгнать',
+    kick_command_description='Вымести участника с сервера',
+    kick_command_result_embed_title='Выгон',
+    kick_command_result_embed_description='Модератор <@{moderator_id}> вымел <@{member_id}>',
 
     error='Ошибка',
     unknown_error='Произошла неизвестная ошибка',

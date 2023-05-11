@@ -15,8 +15,8 @@ class TimeoutCog(Cog):
 
     @command(name='timeout', **LocaledOptionName().timeout_command_name,
              **LocaledOptionDescription().timeout_command_description)
-    @option(name='member', **LocaledOptionName().timeout_command_option_member, type=Member,
-            **LocaledOptionDescription().timeout_command_option_member_description)
+    @option(name='member', **LocaledOptionName().command_common_option_member, type=Member,
+            **LocaledOptionDescription().command_common_option_member_description)
     @option(name='microseconds', **LocaledOptionName().microseconds_nom, type=float,
             required=False, min_value=1, default=0)
     @option(name='milliseconds', **LocaledOptionName().milliseconds_nom, type=float,
@@ -31,8 +31,8 @@ class TimeoutCog(Cog):
             required=False, min_value=1, default=0)
     @option(name='weeks', **LocaledOptionName().weeks_nom, type=float,
             required=False, min_value=1, default=0)
-    @option(name='reason', **LocaledOptionName().timeout_command_option_reason, type=str,
-            **LocaledOptionDescription().timeout_command_option_reason_description,
+    @option(name='reason', **LocaledOptionName().command_common_option_reason, type=str,
+            **LocaledOptionDescription().command_common_option_reason_description,
             default='DEFAULT_REASON')
     async def callback(
             self,
@@ -82,8 +82,8 @@ class TimeoutCog(Cog):
             moderator_id=ctx.user.id,
             member_id=member.id
         )
-        reason = reason if reason != 'DEFAULT_REASON' else localed_text.timeout_command_option_reason_default
-        description += f"\n\n*{localed_text.timeout_command_option_reason_description}*: {reason}"
+        reason = reason if reason != 'DEFAULT_REASON' else localed_text.command_common_option_reason_default
+        description += f"\n\n*{localed_text.command_common_option_reason_description}*: {reason}"
         description += f"\n*{localed_text.timeout_command_result_embed_text_duration}*: {description_duration}"
 
         try:
