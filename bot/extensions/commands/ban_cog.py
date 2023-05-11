@@ -9,12 +9,12 @@ from bot.utils.constants.colors import DEFAULT_EMBED_COLOR, ERROR_EMBED_COLOR
 from bot.utils.constants.titles import EMBED_TITLE_TEMPLATE
 
 
-class TimeoutCog(Cog):
+class BanCog(Cog):
     def __init__(self, bot: Bot) -> None:
         self.bot = bot
 
-    @command(name='timeout', **LocaledOptionName().timeout_command_name,
-             **LocaledOptionDescription().timeout_command_description)
+    @command(name='ban', **LocaledOptionName().ban_command_name,
+             **LocaledOptionDescription().ban_command_description)
     @option(name='member', **LocaledOptionName().command_common_option_member, type=Member,
             **LocaledOptionDescription().command_common_option_member_description)
     @option(name='microseconds', **LocaledOptionName().microseconds_nom, type=float,
@@ -78,7 +78,7 @@ class TimeoutCog(Cog):
             if duration_value != 0:
                 description_duration += f"`{duration_value}` {duration_representation} "
 
-        description = localed_text.timeout_command_result_embed_description.format(
+        description = localed_text.ban_command_result_embed_description.format(
             moderator_id=ctx.user.id,
             member_id=member.id
         )
@@ -87,10 +87,11 @@ class TimeoutCog(Cog):
         description += f"\n*{localed_text.command_common_result_embed_text_duration}*: {description_duration}"
 
         try:
-            await member.timeout_for(duration=duration, reason=reason)
+            await member.ban(reason=reason)
+            # TODO: Add ban duration
             await ctx.respond(embed=Embed(
                 title=EMBED_TITLE_TEMPLATE.format(
-                    emoji="🐷", title=localed_text.timeout_command_result_embed_title
+                    emoji="🐷", title=localed_text.ban_command_result_embed_title
                 ),
                 description=description,
                 color=DEFAULT_EMBED_COLOR
@@ -116,4 +117,4 @@ class TimeoutCog(Cog):
 
 
 def setup(bot: Bot):
-    bot.add_cog(TimeoutCog(bot))
+    bot.add_cog(BanCog(bot))

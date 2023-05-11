@@ -18,7 +18,6 @@ class LocaleModel:
     timeout_command_description: T
     timeout_command_result_embed_title: T
     timeout_command_result_embed_description: T
-    timeout_command_result_embed_text_duration: T
 
     microseconds_nom: T
     microseconds_pos: T
@@ -41,10 +40,17 @@ class LocaleModel:
     command_common_option_reason_description: T
     command_common_option_reason_default: T
 
+    command_common_result_embed_text_duration: T
+
     kick_command_name: T
     kick_command_description: T
     kick_command_result_embed_title: T
     kick_command_result_embed_description: T
+
+    ban_command_name: T
+    ban_command_description: T
+    ban_command_result_embed_title: T
+    ban_command_result_embed_description: T
 
     error: T
     unknown_error: T

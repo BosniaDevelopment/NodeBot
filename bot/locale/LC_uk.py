@@ -16,7 +16,7 @@ LC_uk = LocaleModel(
     timeout_command_description='Команда для тайм-аута учасника',
     timeout_command_result_embed_title='Тайм-аут',
     timeout_command_result_embed_description='Модератор <@{moderator_id}> відправив в тайм-аут учасника <@{member_id}>',
-    timeout_command_result_embed_text_duration='Тривалість',
+    command_common_result_embed_text_duration='Тривалість',
 
     microseconds_nom='мікросекунди',
     microseconds_pos='мікросекунд',
@@ -43,6 +43,11 @@ LC_uk = LocaleModel(
     kick_command_description='Вимести учасника з серверу',
     kick_command_result_embed_title='Вигін',
     kick_command_result_embed_description='Модератор <@{moderator_id}> вимів <@{member_id}>',
+
+    ban_command_name='бан',
+    ban_command_description='Забанити учасника',
+    ban_command_result_embed_title='Бан',
+    ban_command_result_embed_description='Модератор <@{moderator_id}> забанив <@{member_id}>',
 
     error='Помилка',
     unknown_error='Сталася невідома помилка',

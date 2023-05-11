@@ -16,7 +16,7 @@ LC_en_US = LocaleModel(
     timeout_command_description='The command to timeout member',
     timeout_command_result_embed_title='Timeout',
     timeout_command_result_embed_description='Moderator <@{moderator_id}> sent into a timeout member <@{member_id}>',
-    timeout_command_result_embed_text_duration='Duration',
+    command_common_result_embed_text_duration='Duration',
 
     microseconds_nom='microseconds',
     microseconds_pos='microseconds',
@@ -43,6 +43,11 @@ LC_en_US = LocaleModel(
     kick_command_description='Sweep away member from server',
     kick_command_result_embed_title='Kick',
     kick_command_result_embed_description='Moderator <@{moderator_id}> swept out <@{member_id}>',
+
+    ban_command_name='ban',
+    ban_command_description='Ban member from server',
+    ban_command_result_embed_title='Ban',
+    ban_command_result_embed_description='Moderator <@{moderator_id}> banned <@{member_id}>',
 
     error='Error',
     unknown_error='Unknown error',
