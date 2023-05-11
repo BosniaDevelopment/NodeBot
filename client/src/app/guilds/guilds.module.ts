@@ -7,9 +7,16 @@ import { GuildComponent } from './guild/guild.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControlPipe } from './pipes/form-control.pipe';
 import { AsNeverPipe } from './pipes/as-never.pipe';
+import { ComponentsModule } from '@/components/components.module';
 
 @NgModule({
 	declarations: [GuildsComponent, GuildComponent, FormControlPipe, AsNeverPipe],
-	imports: [CommonModule, GuildsRoutingModule, ReactiveFormsModule, ...primengModules],
+	imports: [
+		CommonModule,
+		GuildsRoutingModule,
+		ComponentsModule,
+		ReactiveFormsModule,
+		...primengModules,
+	],
 })
 export class GuildsModule {}

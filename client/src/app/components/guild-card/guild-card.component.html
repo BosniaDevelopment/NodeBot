@@ -1,0 +1,6 @@
+<p-card
+    styleClass="{{ clickable && 'cursor-pointer clickable' }} w-18rem h-18rem mb-4 mr-4 ml-4 text-center {{ styleClass }}">
+    <img class="guild-icon" [src]="guild.iconUrl" [alt]="guild.name" />
+    <h2 class="guild-name">{{ guild.name }}</h2>
+    <span>ID: {{ guild.id }}</span>
+</p-card>
