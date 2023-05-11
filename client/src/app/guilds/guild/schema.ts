@@ -24,12 +24,6 @@ interface IFormMetaData {
 	}[]
 }
 
-export const _meta: Record<keyof EditGuildConfig, string> = {
-	antiSpam: $localize`Spam protection`,
-	antiSpamMaxFrequency: $localize`Maximum messages frequency`,
-	locale: $localize`Server locale`
-};
-
 export const meta: IFormMetaData = {
 	options: {
 		antiSpam: {
