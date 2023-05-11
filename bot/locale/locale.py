@@ -16,11 +16,6 @@ class LocaleModel:
 
     timeout_command_name: T
     timeout_command_description: T
-    timeout_command_option_member: T
-    timeout_command_option_member_description: T
-    timeout_command_option_reason: T
-    timeout_command_option_reason_description: T
-    timeout_command_option_reason_default: T
     timeout_command_result_embed_title: T
     timeout_command_result_embed_description: T
     timeout_command_result_embed_text_duration: T
@@ -39,6 +34,17 @@ class LocaleModel:
     days_pos: T
     weeks_nom: T
     weeks_pos: T
+
+    command_common_option_member: T
+    command_common_option_member_description: T
+    command_common_option_reason: T
+    command_common_option_reason_description: T
+    command_common_option_reason_default: T
+
+    kick_command_name: T
+    kick_command_description: T
+    kick_command_result_embed_title: T
+    kick_command_result_embed_description: T
 
     error: T
     unknown_error: T

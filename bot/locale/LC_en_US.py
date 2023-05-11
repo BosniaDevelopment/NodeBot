@@ -14,11 +14,6 @@ LC_en_US = LocaleModel(
 
     timeout_command_name='timeout',
     timeout_command_description='The command to timeout member',
-    timeout_command_option_member='member',
-    timeout_command_option_member_description='MEMBER',
-    timeout_command_option_reason='reason',
-    timeout_command_option_reason_description='REASON',
-    timeout_command_option_reason_default='No reason',
     timeout_command_result_embed_title='Timeout',
     timeout_command_result_embed_description='Moderator <@{moderator_id}> sent into a timeout member <@{member_id}>',
     timeout_command_result_embed_text_duration='Duration',
@@ -37,6 +32,17 @@ LC_en_US = LocaleModel(
     days_pos='days',
     weeks_nom='weeks',
     weeks_pos='weeks',
+
+    command_common_option_member='member',
+    command_common_option_member_description='Member to apply the action to',
+    command_common_option_reason='reason',
+    command_common_option_reason_description='Reason for applying',
+    command_common_option_reason_default='No reason',
+
+    kick_command_name='kick',
+    kick_command_description='Sweep away member from server',
+    kick_command_result_embed_title='Kick',
+    kick_command_result_embed_description='Moderator <@{moderator_id}> swept out <@{member_id}>',
 
     error='Error',
     unknown_error='Unknown error',
