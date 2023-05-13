@@ -1,6 +1,6 @@
 <h1 class="text-center" i18n="@@your-servers">Your servers</h1>
 <ul class="flex card card-container guilds-ls">
 	<li *ngFor="let guild of guilds">
-		<app-guild-card [guild]="guild" [clickable]="true" routerLink="/guild/{{ guild.id }}" />
+		<app-guild-card [guild]="guild" [clickable]="true" routerLink="/guilds/{{ guild.id }}" />
 	</li>
 </ul>
