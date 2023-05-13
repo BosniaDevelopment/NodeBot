@@ -6,7 +6,7 @@ import { createPrismaRedisCache } from 'prisma-redis-middleware';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
-	private readonly logger = new Logger(PrismaClient.name);
+	private readonly logger = new Logger(PrismaService.name);
 
 	public constructor(private readonly config: ConfigService) {
 		super();

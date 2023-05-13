@@ -1,6 +1,6 @@
 {
     "watch": [ "server", ".env", "tsconfig.json", "package.json" ],
     "execMap": {
-        ".ts": "ts-node --transpile-only --project tsconfig.json"
+        "ts": "ts-node --transpile-only --project tsconfig.json"
     }
 }
