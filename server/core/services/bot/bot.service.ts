@@ -26,6 +26,7 @@ export class NodeBot implements OnModuleInit, IBotService {
 		private readonly config: ConfigService,
 		private readonly prisma: PrismaService
 	) {
+		this.client.prisma = prisma;
 		this.token = this.config.getOrThrow<string>('NBOT_TOKEN');
 	}
 
