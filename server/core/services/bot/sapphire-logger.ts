@@ -3,7 +3,7 @@ import { Logger as SapphireLogger, LogLevel } from '@sapphire/framework';
 
 export function createSapphireLogger(original: Logger): SapphireLogger {
 	const logger: SapphireLogger = {
-		level: LogLevel.Error,
+		level: LogLevel.Trace,
 		debug: (...values) => original.debug(values.join(' ')),
 		error: (...values) => original.error(values.join(' ')),
 		fatal: (...values) => original.error(values.join(' ')),

@@ -1,6 +1,6 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { SapphireClient } from '@sapphire/framework';
+import { SapphireClient, LogLevel } from '@sapphire/framework';
 import { GatewayIntentBits } from 'discord.js';
 import { PrismaService } from '@/core/services/prisma.service';
 import { IBotService, IBotStats, IGuildInfo } from './bot.service.type';
