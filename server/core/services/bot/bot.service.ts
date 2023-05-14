@@ -48,7 +48,7 @@ export class NodeBot implements OnModuleInit, IBotService {
 		const channels = await guild.channels.fetch();
 		
 		const textChannels: Record<`${number}`, string> = {};
-		
+
 		channels.forEach(({ id, name }) => textChannels[id as `${number}`] = name);
 		const botAsMember = await guild.members.fetchMe();
 
