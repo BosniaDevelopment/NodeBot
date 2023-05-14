@@ -1,7 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { SapphireClient, LogLevel } from '@sapphire/framework';
-import { GatewayIntentBits, Guild } from 'discord.js';
+import { SapphireClient } from '@sapphire/framework';
+import { GatewayIntentBits } from 'discord.js';
 import { PrismaService } from '@/core/services/prisma.service';
 import { IBotService, IBotStats, IGuildInfo } from './bot.service.type';
 import { createSapphireLogger } from './sapphire-logger';
@@ -35,21 +35,26 @@ export class NodeBot implements OnModuleInit, IBotService {
 	}
 
 	public async getBotStats(): Promise<IBotStats> {
-		const tag: string = this.client.user.tag;
-		const id: string = this.client.user.id;
-		const servers: number = this.client.guilds.holds.length;
-		const users: number = this.client.users.holds.length;
-
 		return {
-			tag,
-			id,
-			servers,
-			users,
+			tag: this.client.user.tag,
+			id: this.client.user.id,
+			servers: this.client.guilds.cache.size,
+			users: this.client.users.cache.size,
 		};
 	}
 
 	public async getGuildInfo(guildId: string): Promise<IGuildInfo> {
-		// let guild = await this.client.guilds.fetch(guildId);
-		// let channels = await guild.channels.fetch();
+		const guild = await this.client.guilds.fetch(guildId);
+		const channels = await guild.channels.fetch();
+		
+		const textChannels: Record<`${number}`, string> = {};
+		
+		channels.forEach(({ id, name }) => textChannels[id as `${number}`] = name);
+		const botAsMember = await guild.members.fetchMe();
+
+		return {
+			textChannels,
+			botPermissions: botAsMember.permissions.toJSON(),
+		};
 	}
 }
