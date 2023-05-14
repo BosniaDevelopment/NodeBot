@@ -1,7 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { SapphireClient, LogLevel } from '@sapphire/framework';
-import { GatewayIntentBits } from 'discord.js';
+import { GatewayIntentBits, Guild } from 'discord.js';
 import { PrismaService } from '@/core/services/prisma.service';
 import { IBotService, IBotStats, IGuildInfo } from './bot.service.type';
 import { createSapphireLogger } from './sapphire-logger';
@@ -35,10 +35,21 @@ export class NodeBot implements OnModuleInit, IBotService {
 	}
 
 	public async getBotStats(): Promise<IBotStats> {
-		throw new Error('not implemented');
+		const tag: string = this.client.user.tag;
+		const id: string = this.client.user.id;
+		const servers: number = this.client.guilds.holds.length;
+		const users: number = this.client.users.holds.length;
+
+		return {
+			tag,
+			id,
+			servers,
+			users,
+		};
 	}
 
 	public async getGuildInfo(guildId: string): Promise<IGuildInfo> {
-		throw new Error('not implemented');
+		// let guild = await this.client.guilds.fetch(guildId);
+		// let channels = await guild.channels.fetch();
 	}
 }
