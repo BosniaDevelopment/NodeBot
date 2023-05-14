@@ -5,14 +5,14 @@ import { AuthGuard } from '@/auth/auth.guard';
 import { GuildConfigService } from './guild-config.service';
 import { EditGuildConfig } from '@common/dto/edit-guild-config.dto';
 import { Permission } from '@common/permissions';
-import { BotService } from '@/core/services/bot/bot.service';
+import { NodeBot } from '@/core/services/bot/bot.service';
 
 @Controller('api/bot-config')
 @UseGuards(AuthGuard)
 export class BotConfigController {
 	public constructor(
 		private readonly guildConfigService: GuildConfigService,
-		private readonly botService: BotService
+		private readonly nodeBot: NodeBot
 	) {}
 
 	public canConfigure(guild?: PartialGuild): void {
@@ -36,7 +36,7 @@ export class BotConfigController {
 	@Get('/:guildId/public')
 	public async getPublicInfo(@Param('guildId') guildId: string) {
 		try {
-			return await this.botService.getGuildInfo(guildId);
+			return await this.nodeBot.getGuildInfo(guildId);
 		} catch {
 			return null;
 		}
