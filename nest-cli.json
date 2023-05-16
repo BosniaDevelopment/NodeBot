@@ -4,7 +4,7 @@
         "spec": false
     },
     "collection": "@nestjs/schematics",
-    "sourceRoot": "src",
+    "sourceRoot": "server",
     "entryFile": "server/main",
     "compilerOptions": {
         "deleteOutDir": false
